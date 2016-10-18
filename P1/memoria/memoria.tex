@@ -29,7 +29,7 @@
 % \usepackage{pgfplots}
 % \pgfplotsset{compat=1.5}
 
-% \usepackage{subfigure}
+\usepackage{subfigure}
 
 % \usepackage{pseudocode}
 
@@ -126,13 +126,26 @@
 
 La red a analizar ha sido extraída del grupo de \textit{Facebook} llamado \href{https://www.facebook.com/groups/bastadeabusosconnuestrasfotos/}{\textbf{STOP CLAUSULAS ABUSIVAS A LOS FOTÓGRAFOS}}.
 
-\subsection{Grafo de la red}
+% \subsection{Grafo de la red}
 
 En la \hyperref[completo]{Figura \ref*{completo}} vemos una representación del grafo completo de la red y en la \hyperref[conexa]{Figura \ref*{conexa}}, una representación de la componente gigante. Ambas son prácticamente iguales, salvo por dos nodos que están conectados entre sí más alejados del resto. 
 
-A simple vista, se ve que hay dos usuarios que participan muchísimo en todos los posts del grupo. Después vemos nodos con tamaño medio, que supongo que corresponden con los usuarios que han publicado un post y muchos nodos conectados a estos, que corresponden con los usuarios que iteraccionan con ese post.
+Para generar la visualización he optado finalmente por el algoritmo de visualización \textbf{Yifan Hu}, con los parámetros que trae por defecto. El \textbf{tamaño} de los nodos ha sido calculado por su \textbf{grado}. A la hora de \textbf{colorear} los nodos, he usado un atributo de los datos llamado \textbf{made\_posts} que mide el número de posts que ha hecho ese usuario. 
 
-Para generar la visualización he optado finalmente por el algoritmo de visualización \textbf{Yifan Hu}, con los parámetros que trae por defecto. El \textbf{tamaño} de los nodos ha sido calculado por su \textbf{grado}. A la hora de \textbf{colorear} los nodos, he usado un atributo de los datos llamado \textbf{made\_posts} que mide el número de posts que ha hecho ese usuario. Con este coloreado confirmo lo que digo en el párrafo anterior: los nodos con mayor grado corresponden con los usuarios que han hecho algún post y los nodos con un grado pequeño, con los usuarios que interaccionan con dicho post. En la \hyperref[proporcion]{Figura \ref*{proporcion}}, vemos la proporción de usuarios según el número de posts que han escrito. El usuario que más posts ha escrito se ha coloreado en azul (se sitúa en el centro del grafo) y los dos usuarios con mayor grado, han escrito dos posts pero han iteractuado más con el resto de usuarios. Los nodos coloreados en morado son los que no han escrito ningún post, y representan la mayoría.
+% \begin{figure}[!h]
+%     \mbox{
+%     \subfigure[Representación del grafo completo de la red]{
+%     \includegraphics[width=0.5\textwidth]{1}
+%     \label{completo}
+%     }
+%     \subfigure[Representación de la componente gigante del grafo de la red] {
+%     \includegraphics[width=0.5\textwidth]{2}
+%     \label{conexa}
+%     }
+%     }
+%     \caption{Visualización de la red}
+%     \label{red}
+% \end{figure}
 
 \begin{figure}[!h]
     \centering
@@ -143,33 +156,20 @@ Para generar la visualización he optado finalmente por el algoritmo de visualiz
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{3}
-    \caption{Proporción de nodos según el número de posts que han hecho.}
-    \label{proporcion}
-\end{figure}
-
-\begin{figure}[!h]
-    \centering
     \includegraphics[width=\textwidth]{2}
     \caption{Representación de la componente gigante del grafo de la red}
     \label{conexa}
 \end{figure}
 
-\section{Datos estadísticos sobre la red}\label{sec:estadistica}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{3}
+    \caption{Proporción de nodos según el número de posts que han hecho.}
+    \label{proporcion}
+\end{figure}
 
-En la \hyperref[tabla]{Tabla \ref*{tabla}} vemos una serie de datos estadísticos sobre la red. 
 
-Viendo el número máximo de enlaces, ya sabemos que el grafo \textbf{no es completo}, ya que $L_{max} > L$. Además, teniendo en cuenta que la densidad del grafo es $d = 0.003$ y que el coeficiente medio de clústering es $<C> = 0.105$, vemos que además de no ser completo \textbf{hay poca interconexión entre los nodos vecinos}: hay nodos que reciben muchas interacciones y otros que sólo interactúan con un único nodo, es decir, hay pocos nodos que publiquen posts pero muchos que comentan e interactúan con los distintos posts. Podemos comprobar estas dos afirmaciones observando el grafo (\hyperref[completo]{Figura \ref*{completo}}) y la distribución de colores por posts escritos (\hyperref[proporcion]{Figura \ref*{proporcion}}). 
-
-Si observamos el grado medio, podemos concluir que, en media, \textbf{cada usuario interactúa con unos 2 posts}. Observando el diámetro ($d_{max} = 6$) y la distancia media ($d = 3.546$) vemos que todos los usuarios están relacionados entre sí en, como mucho, 6 interacciones pero en media, este número desciende a 3. Con sólo estos datos ya podemos ver que es un \textbf{grupo interconectado}, de hecho, la componente gigante del grupo representa el $99.75\%$ en cuando a nodos y el $99.91\%$ en cuanto a aristas. Podemos comprobar esta afirmación observando el grafo (\hyperref[conexa]{Figura \ref*{conexa}}). Ahora bien, como se ha demostrado en el párrafo anterior, esta interconexión se realiza mediante los usuarios que más interaccionan en el grupo (nodos de color azul, rojo y verde).
-
-Por tanto, a modo de resumen, podemos decir que en este grupo hay tres tipos de usuarios:
-
-\begin{enumerate}[$\bullet$]
-    \item Usuarios que escriben posts y pueden también interactuar con los posts de los demás.
-    \item Usuarios que no escriben posts pero interaccionan bastante a menudo con los posts de los demás.
-    \item Usuarios que interaccionan con sólo un post.
-\end{enumerate}
+% \subsection{Datos estadísticos sobre la red}\label{sec:estadistica}
 
 \begin{table}[!h]
 \centering
@@ -202,9 +202,7 @@ Número de aristas de la componente gigante & $1074$ ($99.91\%$)\\
 \label{tabla}
 \end{table}
 
-\section{Gráficos de distribuciones de la red}
-
-En la \hyperref[coeficientemedioclustering]{Figura \ref*{coeficientemedioclustering}} vemos la distribución del coeficiente medio de clústering. Como hemos dicho anteriormente observando los datos estadísticos (\hyperref[sec:estadistica]{Sección \ref*{sec:estadistica}}), la red tiene una densidad muy baja y un coeficiente de clústering muy bajo. En este gráfico, vemos como la mayoría de nodos (750) tienen $<C_i> = 0$ y sólo unos pocos tienen un coeficiente algo mayor. Los usuarios con $<C_i> = 0$ son todos los que quedan en la periferia de la componente gigante conectados a un usuario que ha escrito un post y los nodos que tienen $<C_i> > 0$, la minoría, se corresponden con los usuarios activos en el grupo de los que hablábamos antes. 
+% \subsection{Gráficos de distribuciones de la red}
 
 \begin{figure}[!h]
     \centering
@@ -213,13 +211,37 @@ En la \hyperref[coeficientemedioclustering]{Figura \ref*{coeficientemediocluster
     \label{coeficientemedioclustering}
 \end{figure}
 
-En la \hyperref[intermediacion]{Figura \ref*{intermediacion}} vemos la distribución del coeficiente de intermediación. Como se ve en la \hyperref[conexa]{Figura \ref*{conexa}}, la mayoría de usuarios del grupo están conectados entre sí por sus interacciones con los usuarios que han escrito algún post. Por tanto, son estos pocos usuarios los que tienen mayor intermediación y aparecen en la parte baja del gráfico y el resto, están representados por un único punto en la coordenada $(0,650)$.
-
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.75\textwidth]{../diametro_red/Betweenness-Centrality-Distribution}
     \caption{Gráfico de distribución del coeficiente de intermediación.}
     \label{intermediacion}
 \end{figure}
+
+\newpage
+\section{Análisis de la red}
+
+Observando la \hyperref[completo]{Figura \ref*{completo}}, se ve que hay dos usuarios que participan muchísimo en todos los posts del grupo. Después vemos nodos con tamaño medio, que supongo que corresponden con los usuarios que han publicado un post y muchos nodos conectados a estos, que corresponden con los usuarios que iteraccionan con ese post. Observando los datos de la \hyperref[tabla]{Tabla \ref*{tabla}}, vemos que el grado medio es 2 ($<k>=2.683$), lo que significa que, en media, \textbf{cada usuario interactúa con otros 2 usuarios}. Observando el diámetro ($d_{max} = 6$) y la distancia media ($d = 3.546$) vemos que todos los usuarios están relacionados entre sí en, como mucho, 6 interacciones pero en media, este número desciende a 3. Con sólo estos datos ya podemos ver que es un \textbf{grupo interconectado}, de hecho, la componente gigante del grupo representa el $99.75\%$ en cuando a nodos y el $99.91\%$ en cuanto a aristas. Podemos comprobar esta afirmación observando el grafo (\hyperref[conexa]{Figura \ref*{conexa}}). 
+
+Si observamos los datos estadísticos (\hyperref[tabla]{Tabla \ref*{tabla}}), ya sabemos que el grafo \textbf{no es completo}, ya que $L_{max} > L$. Además, teniendo en cuenta que la densidad del grafo es $d = 0.003$ y que el coeficiente medio de clústering es $<C> = 0.105$, vemos que además de no ser completo \textbf{hay poca interconexión entre los nodos vecinos}: hay nodos que reciben muchas interacciones y otros que sólo interactúan con un único nodo, es decir, hay pocos usuarios que publiquen posts pero muchos que comentan e interactúan con los distintos posts. Podemos comprobar estas dos afirmaciones observando el grafo (\hyperref[completo]{Figura \ref*{completo}}) y la distribución de colores por posts escritos (\hyperref[proporcion]{Figura \ref*{proporcion}}). 
+
+En la \hyperref[intermediacion]{Figura \ref*{intermediacion}} vemos la distribución del coeficiente de intermediación. Como se ve en la \hyperref[conexa]{Figura \ref*{conexa}}, la mayoría de usuarios del grupo están conectados entre sí por sus interacciones con los usuarios que han escrito algún post. Por tanto, son estos pocos usuarios los que tienen mayor intermediación y aparecen en la parte baja del gráfico y el resto, están representados por un único punto en la coordenada $(0,650)$.
+
+En resumen, el grafo está interconectado entre sí por los usuarios más populares del grupo, pero en realidad, la tónica general de la mayoría de usuarios es interactuar con un usuario y ya está.
+
+% Con el coloreado del grafo (\hyperref[completo]{Figura \ref*{completo}}) según el número de posts escritos por cada usuario confirmo lo que digo en el párrafo anterior: los nodos con mayor grado corresponden con los usuarios que han hecho algún post y los nodos con un grado pequeño, con los usuarios que interaccionan con dicho post. En la \hyperref[proporcion]{Figura \ref*{proporcion}}, vemos la proporción de usuarios según el número de posts que han escrito. El usuario que más posts ha escrito se ha coloreado en azul (se sitúa en el centro del grafo) y los dos usuarios con mayor grado, han escrito dos posts pero han iteractuado más con el resto de usuarios. Los nodos coloreados en morado son los que no han escrito ningún post, y representan la mayoría.
+
+
+Además, los gráficos de distribución también apoyan esto, ya que en , como vemos en la \hyperref[coeficientemedioclustering]{Figura \ref*{coeficientemedioclustering}},la mayoría de nodos (750) tienen $<C_i> = 0$ y sólo unos pocos tienen un coeficiente algo mayor. Los usuarios con $<C_i> = 0$ son todos los que quedan en la periferia de la componente gigante conectados a un usuario que ha escrito un post y los nodos que tienen $<C_i> > 0$, la minoría, se corresponden con los usuarios activos en el grupo de los que hablábamos antes. 
+
+Para terminar de confirmar esto, vemos que observando los datos estadísticos (\hyperref[tabla]{Sección \ref*{tabla}}), la red tiene una densidad muy baja ($d=0.003$) y un coeficiente de clústering muy bajo ($<C> = 0.105$). 
+
+Por tanto, a modo de resumen, podemos decir que en este grupo hay tres tipos de usuarios:
+
+\begin{enumerate}[$\bullet$]
+    \item Usuarios que escriben posts y pueden también interactuar con los posts de los demás.
+    \item Usuarios que no escriben posts pero interaccionan bastante a menudo con los posts de los demás.
+    \item Usuarios que interaccionan con sólo un post.
+\end{enumerate}
 
 \end{document}
