@@ -1,0 +1,297 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment LaTeX Template Version 1.0 (5/5/12)
+% This template has been downloaded from: http://www.LaTeXTemplates.com
+% Original author:  Frits Wenneker (http://www.howtotex.com)
+% License: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt,a4paper,spanish]{article}
+
+% ---- Entrada y salida de texto -----
+
+\usepackage[spanish]{babel} 
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+% \usepackage{spreadtab}
+% \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[usenames, dvipsnames]{color}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage[bookmarks=true,colorlinks=true,linkcolor=red,citecolor=blue]{hyperref}
+% \usepackage{cite}
+% \usepackage[official]{eurosym}
+\usepackage{tikz}
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=1.5}
+
+\usepackage{subfigure}
+
+% \usepackage{pseudocode}
+
+% ---- Otros paquetes ----
+\usepackage{enumerate}
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{graphics,graphicx} %para incluir imágenes y notas en las imágenes
+% Para hacer tablas comlejas
+%\usepackage{multirow}
+%\usepackage{threeparttable}
+
+\usepackage[a4paper, margin=1.3in]{geometry}
+
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\bfseries\scshape} % Make all sections centered, the default font and small caps
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%con esto nos aseguramos de que las cabeceras de capítulo y de sección vayan en minúsculas
+
+\renewcommand{\sectionmark}[1]{%
+      \markright{\thesection\ #1}}
+\fancyhf{} %borra cabecera y pie actuales
+\fancyhead[LE,RO]{{\bfseries Práctica 2}}
+\fancyhead[LO]{\bfseries Marta Gómez}
+\fancyfoot[C]{\thepage{}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt} %espacio para la raya
+\fancypagestyle{plain}{%
+      \fancyhead{} %elimina cabeceras en páginas "plain"
+      \renewcommand{\headrulewidth}{0pt} %así como la raya
+}
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+%----------------------------------------------------------------------------------------
+%   TÍTULO Y DATOS DEL ALUMNO
+%----------------------------------------------------------------------------------------
+
+\title{
+\normalfont \normalsize 
+{\bf Redes y Sistemas Complejos} \\ Curso 2015-2016 \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge \textsc{Práctica 1: \\ Análisis Preliminar y Visualización \\ Básica de una red de Facebook \\ con \textit{Gephi}} \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{\textit{Marta Gómez Macías}} %\\ \texttt{mgmacias95@correo.ugr.es} \\ 75929776Z \\[0.5cm]
+
+% \date{\normalsize\today} % Incluye la fecha actual
+
+% \usepackage{pdflscape}
+
+%----------------------------------------------------------------------------------------
+% DOCUMENTO
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+%Cambiar Cuadros por Tablas y lista de...
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\tablename}{Tabla} 
+
+\begin{titlepage}
+\begin{center}
+\includegraphics[width=0.2\textwidth]{../../ugr}
+
+\normalfont \normalsize 
+{\bf Redes y Sistemas Complejos} \\ Curso 2016-2017 \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+{\huge \textsc{Práctica 3: \\ Estudio Comparativo de Métodos \\ para Poda y Visualización \\ de Redes }} % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+
+{\Large \textit{Marta Gómez Macías} \\ \texttt{mgmacias95@correo.ugr.es} \\ 75929776Z \\[0.5cm]
+
+\date{\today}} % Incluye la fecha actual
+\end{center}
+\end{titlepage}
+
+\tableofcontents % para generar el índice de contenidos
+
+% \listoffigures
+
+% \listoftables
+
+\section{Poda y visualización de redes con tamaño pequeño.}
+
+
+\subsection{Variante de \textit{Pathfinder} y cienciogramas escogidos}
+La variante de \textit{Pathfinder} escogida para realizar esta parte de la práctica ha sido \textbf{Binary Pathfinder} debido a su mayor eficiencia y menor uso de memoria. Respecto a los cienciogramas escogidos, he lanzado un generador de números aleatorios y he obtenido los siguientes:
+
+\begin{enumerate}[\qquad\ ---]
+    \item Chile (2004)
+    \item Mexico (2005)
+    \item Europe (2002)
+    \item USA (2002)
+    \item Japan (2002)
+    \item Argentina (2005)
+    \item Germany (2002)
+    \item Canada (2005)
+    \item Cuba (2004)
+    \item World (2002)
+\end{enumerate}
+
+% Para usar el programa: ./binary-pathfinder ../cienciogramas/<filename> <q>
+
+\begin{tabular}{lrr}
+\hline
+ Argentina-2005 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=266$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original                 &               $17938$ & $0.000111501$ \\
+ $2$                            &                 $324$ & $0.00619195$  \\
+ $3$                            &                 $277$ & $0.00724638$  \\
+ $4$                            &                 $269$ & $0.00746269$  \\
+ $5$                            &                 $268$ & $0.00749064$  \\
+ $265$                          &                 $267$ & $0.0075188$   \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ Canada-2005 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=288$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original              &               $30574$ & $6.54172 \cdot 10^{-5}$ \\
+ $2$                         &                 $340$ & $0.00589971$  \\
+ $3$                         &                 $301$ & $0.00666667$  \\
+ $4$                         &                 $290$ & $0.00692042$  \\
+ $5$                         &                 $287$ & $0.00699301$  \\
+ $287$                       &                 $287$ & $0.00699301$  \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ Chile-2004 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=256$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original             &               $14778$ & $0.000135345$ \\
+ $2$                        &                 $318$ & $0.00630915$  \\
+ $3$                        &                 $265$ & $0.00757576$  \\
+ $4$                        &                 $258$ & $0.0077821$   \\
+ $5$                        &                 $256$ & $0.00784314$  \\
+ $255$                      &                 $256$ & $0.00784314$  \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ Cuba-2004 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=237$)   &   Número de enlaces &   Densidad \\
+\hline
+ Red original            &                $9518$ & $0.00021015$ \\
+ $2$                       &                 $285$ & $0.00704225$ \\
+ $3$                       &                 $255$ & $0.00787402$ \\
+ $4$                       &                 $249$ & $0.00806452$ \\
+ $5$                       &                 $247$ & $0.00813008$ \\
+ $236$                     &                 $247$ & $0.00813008$ \\
+\hline
+\end{tabular}
+
+\begin{tabular}{lrr}
+\hline
+ Spain-2002 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=264$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original             &               $21807$ & $9.17179 \cdot 10^{-5}$ \\
+ $2$                        &                 $320$ & $0.00626959$  \\
+ $3$                        &                 $274$ & $0.00732601$  \\
+ $4$                        &                 $265$ & $0.00757576$  \\
+ $5$                        &                 $263$ & $0.00763359$  \\
+ $263$                      &                 $263$ & $0.00763359$  \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ Germany-2002 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=269$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original               &               $25395$ & $7.87588 \cdot 10^{-5}$ \\
+ $2$                          &                 $313$ & $0.00641026$  \\
+ $3$                          &                 $277$ & $0.00724638$  \\
+ $4$                          &                 $272$ & $0.00738007$  \\
+ $5$                          &                 $270$ & $0.00743494$  \\
+ $268$                        &                 $269$ & $0.00746269$  \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ Japan-2002 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=265$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original             &               $21754$ & $9.19413 \cdot 10^{-5}$ \\
+ $2$                        &                 $316$ & $0.00634921$  \\
+ $3$                        &                 $279$ & $0.00719424$  \\
+ $4$                        &                 $269$ & $0.00746269$  \\
+ $5$                        &                 $267$ & $0.0075188$   \\
+ $264$                      &                 $267$ & $0.0075188$   \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ Mexico-2005 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=270$)   &   Número de enlaces &   Densidad \\
+\hline
+ Red original              &               $20110$ & $9.9458 \cdot 10^{-5}$ \\
+ $2$                         &                 $336$ & $0.00597015$ \\
+ $3$                         &                 $284$ & $0.00706714$ \\
+ $4$                         &                 $275$ & $0.00729927$ \\
+ $5$                         &                 $274$ & $0.00732601$ \\
+ $269$                       &                 $273$ & $0.00735294$ \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ United\_States-2002 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=276$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original                     &               $31292$ & $6.39161 \cdot 10^{-5}$ \\
+ $2$                                &                 $314$ & $0.00638978$  \\
+ $3$                                &                 $287$ & $0.00699301$  \\
+ $4$                                &                 $279$ & $0.00719424$  \\
+ $5$                                &                 $277$ & $0.00724638$  \\
+ $275$                              &                 $275$ & $0.00729927$  \\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{lrr}
+\hline
+ World & \multicolumn{2}{c}{$r = \infty$} \\
+($n=218$)   &   Número de enlaces &    Densidad \\
+\hline
+ Red original        &               $20154$ & $9.92408 \cdot 10^{-5}$ \\
+ $2$                   &                 $280$ & $0.00716846$  \\
+ $3$                   &                 $233$ & $0.00862069$  \\
+ $4$                   &                 $223$ & $0.00900901$  \\
+ $5$                   &                 $220$ & $0.00913242$  \\
+ $217$                 &                 $217$ & $0.00925926$  \\
+\hline
+\end{tabular}
+
+
+\section{Análisis de la eficiencia de las distintas variantes de \textit{Pathfinder} en redes de gran tamaño.}
+
+\end{document}
