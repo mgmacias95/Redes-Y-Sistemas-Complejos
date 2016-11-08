@@ -53,7 +53,7 @@
 \renewcommand{\sectionmark}[1]{%
       \markright{\thesection\ #1}}
 \fancyhf{} %borra cabecera y pie actuales
-\fancyhead[LE,RO]{{\bfseries Práctica 2}}
+\fancyhead[LE,RO]{{\bfseries Práctica 3}}
 \fancyhead[LO]{\bfseries Marta Gómez}
 \fancyfoot[C]{\thepage{}}
 \renewcommand{\headrulewidth}{0.5pt}
@@ -79,9 +79,9 @@
 
 \title{
 \normalfont \normalsize 
-{\bf Redes y Sistemas Complejos} \\ Curso 2015-2016 \\ [25pt] % Your university, school and/or department name(s)
+{\bf Redes y Sistemas Complejos} \\ Curso 2016-2017 \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge \textsc{Práctica 1: \\ Análisis Preliminar y Visualización \\ Básica de una red de Facebook \\ con \textit{Gephi}} \\ % The assignment title
+\huge \textsc{Práctica 3: \\ Estudio Comparativo de Métodos \\ para Poda y Visualización \\ de Redes } \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -131,7 +131,7 @@ La variante de \textit{Pathfinder} escogida para realizar esta parte de la prác
 \begin{enumerate}[\qquad\ ---]
     \item Chile (2004)
     \item Mexico (2005)
-    \item Europe (2002)
+    \item Spain (2002)
     \item USA (2002)
     \item Japan (2002)
     \item Argentina (2005)
@@ -143,154 +143,323 @@ La variante de \textit{Pathfinder} escogida para realizar esta parte de la prác
 
 % Para usar el programa: ./binary-pathfinder ../cienciogramas/<filename> <q>
 
+\subsection{Resultados obtenidos en cada cienciograma}
+
+\begin{table}[!h]
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Argentina-2005 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=266$)   &   Número de enlaces &    Densidad \\
+($n=266$)   &   Nº  enlaces &    Densidad \\
 \hline
- Red original                 &               $17938$ & $0.000111501$ \\
+ Red original                 &               $17938$ & $0.508952$ \\
  $2$                            &                 $324$ & $0.00619195$  \\
- $3$                            &                 $277$ & $0.00724638$  \\
- $4$                            &                 $269$ & $0.00746269$  \\
- $5$                            &                 $268$ & $0.00749064$  \\
- $265$                          &                 $267$ & $0.0075188$   \\
+ $3$                            &                 $277$ & $0.00919279$  \\
+ $4$                            &                 $269$ & $0.00763229$  \\
+ $5$                            &                 $268$ & $0.00760392$  \\
+ $265$                          &                 $267$ & $0.00757554$   \\
 \hline
 \end{tabular}
-
-
+\caption{Resultados obtenidos en el cienciograma Argentina-2005}
+\label{argentina2005}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Canada-2005 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=288$)   &   Número de enlaces &    Densidad \\
+($n=288$)   &   Nº  enlaces &    Densidad \\
 \hline
- Red original              &               $30574$ & $6.54172 \cdot 10^{-5}$ \\
- $2$                         &                 $340$ & $0.00589971$  \\
- $3$                         &                 $301$ & $0.00666667$  \\
- $4$                         &                 $290$ & $0.00692042$  \\
- $5$                         &                 $287$ & $0.00699301$  \\
- $287$                       &                 $287$ & $0.00699301$  \\
+ Red original              &               $30574$ & $0.739789$ \\
+ $2$                         &                 $340$ & $0.00822687$  \\
+ $3$                         &                 $301$ & $0.0072832$  \\
+ $4$                         &                 $290$ & $0.00701703$  \\
+ $5$                         &                 $287$ & $0.00694444$  \\
+ $287$                       &                 $287$ & $0.00694444$  \\
 \hline
 \end{tabular}
+\caption{Resultados obtenidos en el cienciograma Canada-2005}
+\label{canada2005}
+\end{minipage}
+\end{table}
 
-
+\begin{table}[!h]
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Chile-2004 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=256$)   &   Número de enlaces &    Densidad \\
+($n=256$)   &   Nº  enlaces &    Densidad \\
 \hline
- Red original             &               $14778$ & $0.000135345$ \\
- $2$                        &                 $318$ & $0.00630915$  \\
- $3$                        &                 $265$ & $0.00757576$  \\
- $4$                        &                 $258$ & $0.0077821$   \\
+ Red original             &               $14778$ & $0.452757$ \\
+ $2$                        &                 $318$ & $0.00974265$  \\
+ $3$                        &                 $265$ & $0.00811887$  \\
+ $4$                        &                 $258$ & $0.00790441$   \\
  $5$                        &                 $256$ & $0.00784314$  \\
  $255$                      &                 $256$ & $0.00784314$  \\
 \hline
 \end{tabular}
-
-
+\caption{Resultados obtenidos en el cienciograma Chile-2004}
+\label{chile2004}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Cuba-2004 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=237$)   &   Número de enlaces &   Densidad \\
+($n=237$)   &   Nº  enlaces &   Densidad \\
 \hline
- Red original            &                $9518$ & $0.00021015$ \\
- $2$                       &                 $285$ & $0.00704225$ \\
- $3$                       &                 $255$ & $0.00787402$ \\
- $4$                       &                 $249$ & $0.00806452$ \\
- $5$                       &                 $247$ & $0.00813008$ \\
- $236$                     &                 $247$ & $0.00813008$ \\
+ Red original            &                $9518$ & $0.340342$ \\
+ $2$                       &                 $285$ & $0.0101909$ \\
+ $3$                       &                 $255$ & $0.00911821$ \\
+ $4$                       &                 $249$ & $0.00890367$ \\
+ $5$                       &                 $247$ & $0.00883215$ \\
+ $236$                     &                 $247$ & $0.00883215$ \\
 \hline
 \end{tabular}
+\caption{Resultados obtenidos en el cienciograma Cuba-2004}
+\label{cuba2004}
+\end{minipage}
+\end{table}
 
+\begin{table}[!h]
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Spain-2002 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=264$)   &   Número de enlaces &    Densidad \\
+($n=264$)   &   Nº enlaces &    Densidad \\
 \hline
- Red original             &               $21807$ & $9.17179 \cdot 10^{-5}$ \\
- $2$                        &                 $320$ & $0.00626959$  \\
- $3$                        &                 $274$ & $0.00732601$  \\
- $4$                        &                 $265$ & $0.00757576$  \\
- $5$                        &                 $263$ & $0.00763359$  \\
- $263$                      &                 $263$ & $0.00763359$  \\
+ Red original             &               $21807$ & $0.628154$ \\
+ $2$                        &                 $320$ & $0.00921765$  \\
+ $3$                        &                 $274$ & $0.00789261$  \\
+ $4$                        &                 $265$ & $0.00763337$  \\
+ $5$                        &                 $263$ & $0.00757576$  \\
+ $263$                      &                 $263$ & $0.00757576$  \\
 \hline
 \end{tabular}
-
-
+\caption{Resultados obtenidos en el cienciograma Spain-2002}
+\label{spain2002}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Germany-2002 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=269$)   &   Número de enlaces &    Densidad \\
+($n=269$)   &   Nº enlaces &    Densidad \\
 \hline
- Red original               &               $25395$ & $7.87588 \cdot 10^{-5}$ \\
- $2$                          &                 $313$ & $0.00641026$  \\
- $3$                          &                 $277$ & $0.00724638$  \\
- $4$                          &                 $272$ & $0.00738007$  \\
- $5$                          &                 $270$ & $0.00743494$  \\
+ Red original               &               $25395$ & $0.704516$ \\
+ $2$                          &                 $313$ & $0.00868335$  \\
+ $3$                          &                 $277$ & $0.00768463$  \\
+ $4$                          &                 $272$ & $0.00754591$  \\
+ $5$                          &                 $270$ & $0.00749043$  \\
  $268$                        &                 $269$ & $0.00746269$  \\
 \hline
 \end{tabular}
+\caption{Resultados obtenidos en el cienciograma Germany-2002}
+\label{germany2002}
+\end{minipage}
+\end{table}
 
-
+\begin{table}[!h]
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Japan-2002 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=265$)   &   Número de enlaces &    Densidad \\
+($n=265$)   &   Nº enlaces &    Densidad \\
 \hline
- Red original             &               $21754$ & $9.19413 \cdot 10^{-5}$ \\
- $2$                        &                 $316$ & $0.00634921$  \\
- $3$                        &                 $279$ & $0.00719424$  \\
- $4$                        &                 $269$ & $0.00746269$  \\
- $5$                        &                 $267$ & $0.0075188$   \\
- $264$                      &                 $267$ & $0.0075188$   \\
+ Red original             &               $21754$ & $0.621898$ \\
+ $2$                        &                 $316$ & $0.00903373$  \\
+ $3$                        &                 $279$ & $0.00797599$  \\
+ $4$                        &                 $269$ & $0.00769011$  \\
+ $5$                        &                 $267$ & $0.00763293$   \\
+ $264$                      &                 $267$ & $0.00763293$   \\
 \hline
 \end{tabular}
-
-
+\caption{Resultados obtenidos en el cienciograma Japan-2002}
+\label{japan2002}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  Mexico-2005 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=270$)   &   Número de enlaces &   Densidad \\
+($n=270$)   &   Nº enlaces &   Densidad \\
 \hline
- Red original              &               $20110$ & $9.9458 \cdot 10^{-5}$ \\
- $2$                         &                 $336$ & $0.00597015$ \\
- $3$                         &                 $284$ & $0.00706714$ \\
- $4$                         &                 $275$ & $0.00729927$ \\
- $5$                         &                 $274$ & $0.00732601$ \\
- $269$                       &                 $273$ & $0.00735294$ \\
+ Red original              &               $20110$ & $0.553766$ \\
+ $2$                         &                 $336$ & $0.00925238$ \\
+ $3$                         &                 $284$ & $0.00782046$ \\
+ $4$                         &                 $275$ & $0.00757263$ \\
+ $5$                         &                 $274$ & $0.00754509$ \\
+ $269$                       &                 $273$ & $0.00751755$ \\
 \hline
 \end{tabular}
+\caption{Resultados obtenidos en el cienciograma Mexico-2005}
+\label{mexico2005}
+\end{minipage}
+\end{table}
 
-
+\begin{table}[!h]
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
- United\_States-2002 & \multicolumn{2}{c}{$r = \infty$} \\
-($n=276$)   &   Número de enlaces &    Densidad \\
+ US-2002 & \multicolumn{2}{c}{$r = \infty$} \\
+($n=276$)   &   Nº enlaces &    Densidad \\
 \hline
- Red original                     &               $31292$ & $6.39161 \cdot 10^{-5}$ \\
- $2$                                &                 $314$ & $0.00638978$  \\
- $3$                                &                 $287$ & $0.00699301$  \\
- $4$                                &                 $279$ & $0.00719424$  \\
- $5$                                &                 $277$ & $0.00724638$  \\
- $275$                              &                 $275$ & $0.00729927$  \\
+ Red original                     &               $31292$ & $0.824559$ \\
+ $2$                                &                 $314$ & $0.00827404$  \\
+ $3$                                &                 $287$ & $0.00756258$  \\
+ $4$                                &                 $279$ & $0.00735178$  \\
+ $5$                                &                 $277$ & $0.00729908$  \\
+ $275$                              &                 $275$ & $0.00724638$  \\
 \hline
 \end{tabular}
-
-
+\caption{Resultados obtenidos en el cienciograma United\_States-2002}
+\label{unitedstates2002}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\centering
 \begin{tabular}{lrr}
 \hline
  World & \multicolumn{2}{c}{$r = \infty$} \\
-($n=218$)   &   Número de enlaces &    Densidad \\
+($n=218$)   &   Nº enlaces &    Densidad \\
 \hline
- Red original        &               $20154$ & $9.92408 \cdot 10^{-5}$ \\
- $2$                   &                 $280$ & $0.00716846$  \\
- $3$                   &                 $233$ & $0.00862069$  \\
- $4$                   &                 $223$ & $0.00900901$  \\
- $5$                   &                 $220$ & $0.00913242$  \\
- $217$                 &                 $217$ & $0.00925926$  \\
+ Red original        &               $20154$ & $0.85207$ \\
+ $2$                   &                 $280$ & $0.0118378$  \\
+ $3$                   &                 $233$ & $0.00985076$  \\
+ $4$                   &                 $223$ & $0.00942798$  \\
+ $5$                   &                 $220$ & $0.00930115$  \\
+ $217$                 &                 $217$ & $0.00917431$  \\
 \hline
 \end{tabular}
+\caption{Resultados obtenidos en el cienciograma World}
+\label{world}
+\end{minipage}
+\end{table}
 
+\subsection{Análisis de los resultados obtenidos en cada cienciograma}
+La tónica general en todos los cienciogramas es una reducción drástica del número de enlaces entre la red original ($q = 1$) y una poda con $q = 2$. Esta primera poda es bastante fuerte, ya que elimina la gran mayoría de nodos, por ejemplo, en el cienciograma de los Estados Unidos en el año 2002 (\hyperref[unitedstates2002]{Tabla \ref*{unitedstates2002}}) pasamos de 31292 enlaces a 314, es decir, tras la poda sólo quedan el $1.0034\%$ de los nodos. Algo parecido pasa en el cienciograma de Canadá en el año 2005, donde pasamos de 30574 enlaces a 340, dejando sólo un $1.11\%$ de los enlaces. Una vez hecha la primera poda, las sucesivas son bastante más suaves, por tanto, podemos concluir que \textbf{la intensidad de la poda es inversamente proporcional al valor de $q$}: cuanto más pequeño sea $q$, mayor será la poda. Obviamente, $q \geq 2$ ya que $q = 1$ corresponde a la red original.
+
+Como hemos dicho antes, la intensidad de la poda se reduce conforme se aumenta el valor de $q$, ahora bien, llega un momento en el que ya no se puede podar más. En la mayoría de cienciogramas estudiados, este momento llega cuando $q = 5$, ahora bien, no siempre es así, ya que hay ejemplos en los que desde $q = 5$ hasta $q = n-1$ podan varios enlaces más: World (\hyperref[world]{Tabla \ref*{world}}), United States 2002 (\hyperref[unitedstates2002]{Tabla \ref*{unitedstates2002}}), Argentina 2005 (\hyperref[argentina2005]{Tabla \ref*{argentina2005}}), entre otros. Por tanto, podemos concluir que \textbf{A partir de, más o menos, $q = 5$ la PFNET($r = \infty$, $q$) alcanza su valor máximo de poda}, además, \textbf{no hay mucha dispersión en ese valor}, ya que casi todos los cienciogramas llegan al límite ahí.
+
+Otro detalle a tener en cuenta es que conforme se va podando la red, va reduciéndose la densidad de la misma. Para entender por qué ocurre esto, es necesario saber la fórmula de la densidad:
+
+\begin{displaymath}
+    D = \frac{L}{L_{max}} \qquad\ \textrm{Donde } L_{max} = \frac{N(N-1)}{2}
+\end{displaymath}
+
+es decir, la densidad depende del número de enlaces, $L$, de la red, al ir eliminando enlaces al podar, también reducimos la densidad de la red.
+
+\subsection{Visualización de los cienciogramas}
+
+Los cienciogramas que he elegido para visualizar son la de \textit{Estados Unidos en el año 2002} porque es la que más poda entre $q = 5$ y $q = n-1$ y la de \textit{España en el año 2002} porque no poda nada una vez pasado $q = 5$.
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_fr_spain}
+            \label{q2frsp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_fr_spain}
+            \label{q3frsp}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_fr_spain}
+            \label{q4frsp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_fr_spain}
+            \label{qnfrsp}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma Spain-2002 realizadas con el método de distribución F-R}
+    \label{frsp}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_kk_spain}
+            \label{q2kksp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_kk_spain}
+            \label{q3kksp}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_kk_spain}
+            \label{q4kksp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_kk_spain}
+            \label{qnkksp}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma Spain-2002 realizadas con el método de distribución K-K}
+    \label{kksp}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_fr_us}
+            \label{q2frus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_fr_us}
+            \label{q3frus}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_fr_us}
+            \label{q4frus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_fr_us}
+            \label{qnfrus}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma United\_States-2002 realizadas con el método de distribución F-R}
+    \label{frus}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_kk_us}
+            \label{q2kkus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_kk_us}
+            \label{q3kkus}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_kk_us}
+            \label{q4kkus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_kk_us}
+            \label{qnkkus}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma United\_States-2002 realizadas con el método de distribución K-K}
+    \label{kkus}
+\end{figure}
 
 \section{Análisis de la eficiencia de las distintas variantes de \textit{Pathfinder} en redes de gran tamaño.}
 

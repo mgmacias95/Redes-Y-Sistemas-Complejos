@@ -3,7 +3,8 @@
 
 from subprocess import Popen, PIPE
 from tabulate import tabulate
-from sympy import binomial
+
+l_max = lambda n: (n*(n-1))/2
 
 # cienciogramas a analizar
 cienciogramas = ["Argentina-2005.net", "Canada-2005.net", "Chile-2004.net", 
@@ -47,7 +48,7 @@ for cg in cienciogramas:
         enlaces = proc.stdout.read().split(b'*edges\n')[1].count(b'\n')
         lista_enlaces.append(enlaces)
         # calculamos la densidad de la red
-        densidad = enlaces/binomial(enlaces, 2)
+        densidad = enlaces/l_max(cg[1]+1)
         lista_densidad.append(densidad)
     # generamos la tabla para el cienciograma actual
     table = [[(['Red original'] + qs[1:] + [cg[1]])[i], lista_enlaces[i], lista_densidad[i]]
