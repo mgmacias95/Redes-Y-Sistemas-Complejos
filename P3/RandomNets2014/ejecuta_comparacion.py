@@ -33,7 +33,6 @@ for n in ns:
 
     for a in algs:
         # la podamos midiendo el tiempo que tardamos con un limite de una hora
-        # signal.signal(signal.SIGALRM, handle_alarm)
         try:
             antes = time.time()
             run([a, "prueba"+str(n)+".txt", str(n-1)], timeout=3600, stdout=PIPE)
