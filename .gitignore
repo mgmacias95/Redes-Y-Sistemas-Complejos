@@ -184,3 +184,7 @@ TSWLatexianTemp*
 # C FILES
 *.o
 binary-pathfinder
+mst-pathfinder*
+fast-pathfinder
+prueba*
+create-mod

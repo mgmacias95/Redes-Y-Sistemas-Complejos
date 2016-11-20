@@ -1,0 +1,36 @@
+Instrucciones para la generacion de redes con el Create-mod.c del RandomNets:
+-----------------------------------------------------------------------------
+
+
+Parameters:
+
+- size: the size of the matrix
+- symmetry: 0 for a non symmetrical (directed) matrix, 1 for a symmetrical (undirected) matrix
+- diagonal_value: the value in the diagonal meaning there is no link (for instance, 0)
+- weight_type: 0 for integers, 1 for real numbers
+- min/max: range of the random values
+- proba_infinity: probability to produce the INFINITY value
+- edge_prob: probability p to generate an edge between each two nodes
+
+EXECUTION: <program> <size> <symmetry> <diagonal_value> <weight_type> <min> <max> <edge_prob>
+
+
+
+La interpretacion de los parametros es:
+
+* size: numero de nodos de la red a generar (N)
+
+* symmetry: bit que determina si se genera una red dirigida (matriz no simetrica, valor 0) o no dirigida (matriz simetrica en la diagonal, valor 1)
+
+* diagonal_value: valor a meter en la diagonal (las redes generadas no tienen autoenlaces, asi que podemos meter lo que queramos, por ejemplo 0).
+
+* weight_type: tipo de pesos de la red: 0 -> enteros, 1 -> reales
+
+* [min,max]: rango de definicion de los pesos de la red que se generaran aleatoriamente (No poner valores negativos!!)
+
+* edge_prob: probabilidad p de generar un enlace entre cada par de nodos
+
+
+Ejemplo: "genera_red_ponderada_aleatoria 1000 1 0 1 1.5 10.5 0.1" crea una red aleatoria de 1000 nodos, dirigida, con 0's en la diagonal,
+         con pesos reales aleatorios en [1.5,10.5] y probabilidad 0.1 de crear cada enlace
+
