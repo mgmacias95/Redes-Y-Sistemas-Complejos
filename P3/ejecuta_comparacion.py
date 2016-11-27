@@ -25,15 +25,15 @@ for n in ns:
     lista_densidad = []
     # generamos la red
     # Usage:
-    with open("prueba"+str(n)+".txt",'r+') as out:
-        Popen(["./RandomNets2014/create-mod",         # ./create-mod
+    with open("prueba"+str(n)+".txt",'w') as out:
+        run(["./RandomNets2014/create-mod",         # ./create-mod
             str(n),                                   # <size>
             '1',                                      # <symmetry>
             '0',                                      # <diagonal-value>
             '0',                                      # <weight-type>
-            '500',                                    # <min>
-            '5000',                                   # <max>
-            '0.5'],                                   # <edge-prob>
+            '1',                                    # <min>
+            '2',                                   # <max>
+            '0.01'],                                   # <edge-prob>
             stdout=out)
 
     for a in algs:
@@ -41,7 +41,11 @@ for n in ns:
         # la podamos midiendo el tiempo que tardamos con un limite de una hora
         try:
             antes = time.time()
-            proc = run([a, "prueba"+str(n)+".txt", str(n-1)], check=True, timeout=1800, stdout=PIPE)
+            proc = run([a, "prueba"+str(n)+".txt", str(n-1)], timeout=1800, stdout=PIPE)
+            if proc.returncode != 0:
+                raise TimeoutExpired(cmd=[a, "prueba"+str(n)+".txt", str(n-1)], timeout=1800)
+            with open("red"+a.split('/')[0]+str(n)+".txt",'w') as out:
+                out.write(str(proc.stdout))
             despues = time.time()
             tiempos_poda.append("$"+str(despues - antes)+"$")
             # contamos el número de enlaces que obtenemos

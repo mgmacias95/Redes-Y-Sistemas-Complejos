@@ -357,7 +357,7 @@ es decir, la densidad depende del número de enlaces, $L$, de la red, al ir elim
 
 Los cienciogramas que he elegido para visualizar son la de \textit{Estados Unidos en el año 2002} (Figuras \hyperref[frus]{\ref*{frus}} y \hyperref[kkus]{\ref*{kkus}} y \hyperref[unitedstates2002]{Tabla \ref*{unitedstates2002}}) porque es la que más poda entre $q = 5$ y $q = n-1$ y la de \textit{España en el año 2002} (Figuras \hyperref[frsp]{\ref*{frsp}} y \hyperref[kksp]{\ref*{kksp}} y \hyperref[spain2002]{Tabla \ref*{spain2002}}) porque no poda nada una vez pasado $q = 5$.
 
-Para poder aplicar el método K-K, he tenido que anular la fuerza de atracción, ya que si no, los nodos salían demasiado pegados en las visualizaciones.
+Para poder aplicar el método K-K, he tenido que anular la fuerza de atracción, ya que si no, los nodos salían demasiado pegados en las visualizaciones. A pesar de esto, he obtenido una distribución en forma de estrella en vez de la típica distribución de mapa de metro.
 
 Con ambas redes, debido a que tienen una naturaleza muy similar, obtenemos resultados muy parecidos. Incluso, las visualizaciones las redes con cada método de distribución y distinto $q$ han dado resultados prácticamente idénticos. Por tanto, el análisis se centrará más en diferenciar al método K-K y al F-R.
 
@@ -476,17 +476,19 @@ Ambas distruciones dan bastante información sobre la red, aunque necesitan de i
 Para realizar las ejecuciones he hecho un script en \textit{Python} que genera las redes aleatorias usando el código C dado por el profesor y lo poda con las distintas variantes del algoritmo \textit{Pathfinder}. Como mínimo, la red generada tendrá $500$ enlaces y, como máximo $5000$. Además, la probabilidad de que exista un enlace entre dos nodos es de $0.5$.
 
 \begin{table}[!h]
-\begin{tabular}{llllll}
+\begin{tabular}{rrrlllll}
 \hline
-$N$ & Original             & Binary               & Fast                 & MST (Teorico)         & MST (Práctico)        \\
+    $N$ &    Media $L$ &   Media $D$ & Original             & Binary               & Fast                 & MST (Teorico)          & MST (Práctico)         \\
 \hline
-$500$ & $166.5687$   & $8.0246$  & $0.6478$ & $0.2121$ & $0.1610$ \\
-$1000$ & $1.3534$  & $144.7200$ & $3.3231$ & $0.4567$ & $0.4110$  \\
-$2000$ & $46.8512$  & $1405.2264$ & $24.7907$ & $1.7001$  & $1.7057$  \\
-$5000$ & $39.0521$ & $> 1800$               & $381.3986$ & $10.6476$  & $10.6628$  \\
-$10000$ & $49.9700$  & $> 1800$               & $> 1800$               & $42.8848$   & $42.7796$   \\
+$500$ &   $1252$ & $0.0100$  & $82.9369$  & $6.3309$  & $0.4045$ & $0.0374$ & $0.0065$ \\
+$1000$ & $4999$ & $0.0100$   &       $1304.4014$ & $89.3710$  & $2.9496$ & $0.0201$  & $0.0203$ \\
+$2000$ &  $20041$ & $0.0100$  &       $> 1800$ & $1234.4935$ & $23.6252$ & $0.1561$  & $0.0792$  \\
+$5000$ & $124525$ & $0.0099$ & $> 1800$ & $> 1800$ & $361.3296$   & $0.4194$   & $0.4552$   \\
+$10000$ & $498666$ & $0.0099$ & $> 1800$ & $> 1800$ & $> 1800$ & $1.7304$   & $1.5963$    \\
 \hline
 \end{tabular}
+
+
 \caption{Tiempos de poda de cada algoritmo}
 \label{tiempopoda}
 \end{table}
