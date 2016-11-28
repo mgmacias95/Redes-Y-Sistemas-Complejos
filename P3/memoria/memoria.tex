@@ -636,24 +636,25 @@ Entre todas las visualizaciones que he aplicado, las que más me han gustado \te
 \section{Análisis de la eficiencia de las distintas variantes de \textit{Pathfinder} en redes de gran tamaño.}
 En la \hyperref[tiempopoda]{Tabla \ref*{tiempopoda}} vemos los tiempos obtenidos y la media tanto de enlaces como de densidad para las podas hechas con cada algoritmo. Las redes generadas no eran demasiado densas, en general la densidad media ha sido $D = 0.01$ y el número de enlaces medio está muy por debajo de $L_{max}$ debido a la dispersión de las redes generadas.
 
-En cuanto a los tiempos de ejecución, se ve perfectamente la gran diferencia de tiempo entre el algoritmo \textit{MST} y el resto. Mientras que para el caso más pequeño, 500 nodos, el \textit{original} tarda un minuto y medio, el \textit{MST} tarda menos de un segundo. Esta diferencia se acentúa conforme se aumenta el tamaño de la red: con 10000 nodos, el \textit{original} tarda más de media hora mientras que el \textit{MST}, sólo un segundo. 
+En cuanto a los tiempos de ejecución, se ve perfectamente la gran diferencia de tiempo entre el algoritmo \textit{MST} y el resto. Mientras que para el caso más pequeño, 300 nodos, el \textit{original} tarda un minuto y medio, el \textit{MST} tarda menos de un segundo. Esta diferencia se acentúa conforme se aumenta el tamaño de la red: con 10000 nodos, el \textit{original} tarda más de media hora mientras que el \textit{MST}, sólo un segundo. 
 
-No hace falta comparar el algoritmo \textit{original} con el \textit{MST} para encontrarnos un gran salto, éste ya se produce comparándolo con el \textit{Binary}. A pesar de que nos pueda parecer poca la diferencia de eficiencia entre ambos ($O(n^4)$ frente a $O(n^3 log\; n)$) sólo en el caso más pequeño, 500 nodos, el algoritmo \textit{original} es 13 veces más lento. Aún así, en cuanto crece el tamaño de la red a 5000 nodos, el \textit{Binary} queda fuera de juego.
+No hace falta comparar el algoritmo \textit{original} con el \textit{MST} para encontrarnos un gran salto, éste ya se produce comparándolo con el \textit{Binary}. A pesar de que nos pueda parecer poca la diferencia de eficiencia entre ambos ($O(n^4)$ frente a $O(n^3 log\; n)$) sólo en el caso más pequeño, 300 nodos, el algoritmo \textit{original} es 13 veces más lento. Aún así, en cuanto crece el tamaño de la red a 5000 nodos, el \textit{Binary} queda fuera de juego.
 
 En cuanto al algoritmo \textit{Fast}, consigue una mejora significativa frente al \textit{binary}: $O(n^3 log\; n)$ frente a $O(n^3)$. Esta mejora se hace notar en los tiempos de ejecución: con 2000 nodos, el \textit{binary} es 52 veces más lento que el \textit{fast}. Además, el \textit{fast} experimenta un crecimiento mucho más lento del tiempo de ejecución conforme aumenta la complejidad llegando a aguantar hasta redes con 1000 nodos en un tiempo considerable. 
 
-Por último, tenemos a los \textit{MST} con dos versiones diferentes: ambas difieren en la estructura de datos que utilizan para saber a qué clúster pertenece cada nodo. A pesar de que el algoritmo teórico tiene una mejor eficiencia que el práctico ($O(n^2 log\;n)$ frente a $O(n^3)$) esta pequeña diferencia entre ambos hace que el algoritmo práctico sea más rápido. Esta diferencia es muy pequeña (incluso en redes grandes). De hecho, en la red con 10000 nodos, el algoritmo teórico sólo fue casi dos veces más lento que el práctico. Aún así es una diferencia a tener en cuenta.
+Por último, tenemos a los \textit{MST} con dos versiones diferentes: ambas difieren en la estructura de datos que utilizan para saber a qué clúster pertenece cada nodo. A pesar de que el algoritmo teórico tiene una mejor eficiencia que el práctico ($O(n^2 log\;n)$ frente a $O(n^3)$) esta pequeña diferencia entre ambos hace que el algoritmo práctico sea más rápido. Esta diferencia se nota cada vez más conforme crece el tamaño de la red, llegando a obtener una diferencia de dos segundos entre ambos algoritmos para 10000 nodos.
 
 \begin{table}[!h]
 \begin{tabular}{rrrlllll}
 \hline
     $N$ &    Media $L$ &   Media $D$ & Original             & Binary               & Fast                 & MST (Teorico)          & MST (Práctico)         \\
 \hline
+$300$ & $454$ & $0.0101$ & $13.1869$ & $1.1765$ & $0.1312$ & $0.0035$ & $0.0037$ \\
 $500$ &   $1252$ & $0.0100$  & $82.9369$  & $6.3309$  & $0.4045$ & $0.0374$ & $0.0065$ \\
 $1000$ & $4999$ & $0.0100$   &       $1304.4014$ & $89.3710$  & $2.9496$ & $0.0201$  & $0.0203$ \\
 $2000$ &  $20041$ & $0.0100$  &       $> 1800$ & $1234.4935$ & $23.6252$ & $0.1561$  & $0.0792$  \\
 $5000$ & $124525$ & $0.0099$ & $> 1800$ & $> 1800$ & $361.3296$   & $0.4194$   & $0.4552$   \\
-$10000$ & $498666$ & $0.0099$ & $> 1800$ & $> 1800$ & $> 1800$ & $1.7304$   & $1.5963$    \\
+$10000$ & $498666$ & $0.0099$ & $> 1800$ & $> 1800$ & $> 1800$ & $7.2556$   & $5.7306$    \\
 \hline
 \end{tabular}
 \caption{Tiempos de poda de cada algoritmo}

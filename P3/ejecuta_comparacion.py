@@ -20,7 +20,7 @@ def mean(numbers):
 # realizamos las ejecuciones. Todas serán con r=infty y q=n-1
 table_row = []
 for n in ns:
-    tiempos_poda = [n]
+    tiempos_poda = []
     lista_enlaces = []
     lista_densidad = []
     # generamos la red
@@ -57,7 +57,7 @@ for n in ns:
         except TimeoutExpired as t:
             tiempos_poda.append("> 1800")
 
-    table_row.append(mean(lista_enlaces) + mean(lista_densidad) + tiempos_poda)
+    table_row.append([n] + mean(lista_enlaces) + mean(lista_densidad) + tiempos_poda)
 
 # generamos la tabla 
 table = [r for r in table_row]
