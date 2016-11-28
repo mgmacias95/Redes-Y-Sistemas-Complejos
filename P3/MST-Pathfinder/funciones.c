@@ -82,7 +82,6 @@ void Input(int argc, char *argv[]){
   pesos_originales = Matriz_dinamica_float(num_nodos, num_nodos);
 
   for(i=0; i<num_nodos; i++) {		//Inicializamos la matriz de pesos
-    printf("NUMERO DE NODO = %d\n", i);
   	char* ret = fgets(cadena, 1024, fich);	// obviamos la informacion de cada nodo
 	USE(ret);
 	printf("%s", cadena);

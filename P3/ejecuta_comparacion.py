@@ -45,7 +45,7 @@ for n in ns:
             if proc.returncode != 0:
                 raise TimeoutExpired(cmd=[a, "prueba"+str(n)+".net", str(n-1)], timeout=1800)
             with open("red"+a.split('/')[0]+str(n)+".net",'w') as out:
-                out.write(str(proc.stdout).split("\n"))
+                out.write(proc.stdout.decode())
             despues = time.time()
             tiempos_poda.append("$"+str(despues - antes)+"$")
             # contamos el número de enlaces que obtenemos

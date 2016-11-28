@@ -368,9 +368,9 @@ En las Figuras \hyperref[oosp]{\ref*{oosp}} y \hyperref[oous]{\ref*{oous}} vemos
 
 En las Figuras \hyperref[cirsp]{\ref*{cirsp}} y \hyperref[cirus]{\ref*{cirus}} vemos las visualizaciones de las redes usando un método de distribución \textit{\textbf{circular}}. Estas visualizaciones apenas aportan información alguna sobre la red, ya que no permiten distinguir ni comunidades, ni centralidad. Además, los enlaces están todos en el centro de la red muy mezclados entre sí, por lo que es difícil distinguir con qué nodos está conectado un nodo dado. También he probado con el método de distribución \textit{\textbf{radial}}, pero he preferido no incluirlo debido a que agrupando por grados, genera una red muy larga y no quedaba bien en el pdf. A diferencia del método de distribución circular, el radial agrupando por grado, nos permitía ver que había muchos nodos con el mismo grado.
 
-Por último, en las Figuras \hyperref[yfsp]{\ref*{yfsp}} y \hyperref[yhus]{\ref*{yhus}} vemos las visualizaciones de las redes usando el método \textit{\textbf{Yihan-Fu}}. Con esta visualización obtenemos comunidades claramente diferenciadas entre sí y además, aplica la filosofía del \textit{mapa de metro} del método \textit{Kamada \& Kawaii} dejando los nodos más importantes (con un mayor grado) en el centro de la red y los menos importantes en la periferia. Esta es la visualización en la que más se nota la poda de enlaces, ya que cuanto mayor es el parámetro $q$, más alejadas están las distintas comunidades entre sí. De hecho en el cienciograma \textit{United\_States-2002} obtenemos con $q = 2$ un grafo prácticamente circular y con $q = n-1$, todo lo contrario.
+Por último, en las Figuras \hyperref[yfsp]{\ref*{yfsp}} y \hyperref[yhus]{\ref*{yhus}} vemos las visualizaciones de las redes usando el método \textit{\textbf{Yifan-Hu}}. Con esta visualización obtenemos comunidades claramente diferenciadas entre sí y además, aplica la filosofía del \textit{mapa de metro} del método \textit{Kamada \& Kawaii} dejando los nodos más importantes (con un mayor grado) en el centro de la red y los menos importantes en la periferia. Esta es la visualización en la que más se nota la poda de enlaces, ya que cuanto mayor es el parámetro $q$, más alejadas están las distintas comunidades entre sí. De hecho en el cienciograma \textit{United\_States-2002} obtenemos con $q = 2$ un grafo prácticamente circular y con $q = n-1$, todo lo contrario.
 
-Entre todas las visualizaciones que he aplicado, las que más me han gustado \textit{para este problema} han sido \textbf{\textit{Yihan-Fu}} y \textit{\textbf{Kamada \& Kawaii}}, debido a que son las visualizaciones que nos permiten distinguir las disciplinas científicas más importantes, debido a que están colocadas en la parte central de la red, y además también nos permiten ver cómo de alejadas están dos disciplinas científicas. Ambas aplican una filosofía muy parecida, pero entre ambas, elegiría \textit{\textbf{Yihan-Fu}} debido a su mayor eficiencia y capacidad para trabajar con redes de gran tamaño.
+Entre todas las visualizaciones que he aplicado, las que más me han gustado \textit{para este problema} han sido \textbf{\textit{Yifan-Hu}} y \textit{\textbf{Kamada \& Kawaii}}, debido a que son las visualizaciones que nos permiten distinguir las disciplinas científicas más importantes, debido a que están colocadas en la parte central de la red, y además también nos permiten ver cómo de alejadas están dos disciplinas científicas. Ambas aplican una filosofía muy parecida, pero entre ambas, elegiría \textit{\textbf{Yifan-Hu}} debido a su mayor eficiencia y capacidad para trabajar con redes de gran tamaño.
 
 \begin{figure}[!h]
     \centering
@@ -498,7 +498,7 @@ Entre todas las visualizaciones que he aplicado, las que más me han gustado \te
             \label{qnyfsp}
         }
     }
-    \caption{Visualizaciones de las PFNETs del cienciograma Spain-2002 realizadas con el método de distribución Yihan-Fu}
+    \caption{Visualizaciones de las PFNETs del cienciograma Spain-2002 realizadas con el método de distribución Yifan-Hu}
     \label{yfsp}
 \end{figure}
 
@@ -550,7 +550,7 @@ Entre todas las visualizaciones que he aplicado, las que más me han gustado \te
             \label{qnyhus}
         }
     }
-    \caption{Visualizaciones de las PFNETs del cienciograma United\_States-2002 realizadas con el método de distribución Yihan-Fu}
+    \caption{Visualizaciones de las PFNETs del cienciograma United\_States-2002 realizadas con el método de distribución Yifan-Hu}
     \label{yhus}
 \end{figure}
 
@@ -644,9 +644,6 @@ En cuanto al algoritmo \textit{Fast}, consigue una mejora significativa frente a
 
 Por último, tenemos a los \textit{MST} con dos versiones diferentes: ambas difieren en la estructura de datos que utilizan para saber a qué clúster pertenece cada nodo. A pesar de que el algoritmo teórico tiene una mejor eficiencia que el práctico ($O(n^2 log\;n)$ frente a $O(n^3)$) esta pequeña diferencia entre ambos hace que el algoritmo práctico sea más rápido. Esta diferencia es muy pequeña (incluso en redes grandes). De hecho, en la red con 10000 nodos, el algoritmo teórico sólo fue casi dos veces más lento que el práctico. Aún así es una diferencia a tener en cuenta.
 
-
-% En cuanto a los tiempos de ejecución, vemos cómo encajan con lo que esperábamos. El algoritmo \textit{original} tiene una eficiencia de $O(n^4)$, por lo que en cuanto el número de nodos crece lo más mínimo el tiempo se dispara. Igual pasa con el algoritmo \textit{binary}, pero de forma algo más lenta debido a que su complejidad es $O(n^3 \cdot log n)$. La diferencia de tiempo entre el original y el binario es bastante grande, pero la gran diferencia entre ambos es la eficiencia en espacio. Con el algoritmo \textit{fast}, conseguimos reducir la complejidad hasta $O(n^3)$, lo cual nos permite poder operar con matrices redes algo más grandes pero, como vemos, al llegar a 10000 éste algoritmo también supera el tiempo máximo de ejecución.  Por tanto, vemos como a pesar de que $O(n^3)$ pueda parecer una eficiencia muy buena, en cuanto crece el tamaño de la entrada resulta no ser así.
-
 \begin{table}[!h]
 \begin{tabular}{rrrlllll}
 \hline
@@ -662,6 +659,31 @@ $10000$ & $498666$ & $0.0099$ & $> 1800$ & $> 1800$ & $> 1800$ & $1.7304$   & $1
 \caption{Tiempos de poda de cada algoritmo}
 \label{tiempopoda}
 \end{table}
+
+\subsection{Visualización de las redes aleatorias generadas con 2000, 5000 y 10000 nodos}
+
+En las Figuras \hyperref[yh2000]{\ref*{yh2000}}, \hyperref[radial5000]{\ref*{radial5000}} y \hyperref[oo1000]{\ref*{oo1000}} vemos las visualizaciones hechas de las redes aleatorias generadas con 2000, 5000 y 10000 nodos, cada una hecha con un método de visualización diferente.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{../visualizacion/2000_yf}
+  \caption{Visualización con \textit{Yifan-Hu} de la red aleatoria con 2000 nodos podada.}
+  \label{yh2000}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{../visualizacion/5000radial}
+  \caption{Visualización \textit{radial} ordenado por grado de la red aleatoria con 5000 nodos podada.}
+  \label{radial5000}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{../visualizacion/10000openord}
+  \caption{Visualización con \textit{OpenOrd} con 1500 iteraciones de la red aleatoria con 10000 nodos podada.}
+  \label{oo1000}
+\end{figure}
 
 \end{document}
 

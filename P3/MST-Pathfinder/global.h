@@ -18,7 +18,7 @@
 // Type of basic functions
 // 0: Practical run time (disjoined sets based on index) [FASTEST]
 // 1: Theoretical run time (disjoined sets based on forest) [SLOWEST]
-#define BASIC_FUNCTIONS 0
+#define BASIC_FUNCTIONS 1
 
 // Time the computation time
 // 0: no chronometer
