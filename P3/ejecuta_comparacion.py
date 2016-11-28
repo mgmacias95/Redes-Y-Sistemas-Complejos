@@ -25,7 +25,7 @@ for n in ns:
     lista_densidad = []
     # generamos la red
     # Usage:
-    with open("prueba"+str(n)+".txt",'w') as out:
+    with open("prueba"+str(n)+".net",'w') as out:
         run(["./RandomNets2014/create-mod",         # ./create-mod
             str(n),                                   # <size>
             '1',                                      # <symmetry>
@@ -41,10 +41,10 @@ for n in ns:
         # la podamos midiendo el tiempo que tardamos con un limite de una hora
         try:
             antes = time.time()
-            proc = run([a, "prueba"+str(n)+".txt", str(n-1)], timeout=1800, stdout=PIPE)
+            proc = run([a, "prueba"+str(n)+".net", str(n-1)], timeout=1800, stdout=PIPE)
             if proc.returncode != 0:
-                raise TimeoutExpired(cmd=[a, "prueba"+str(n)+".txt", str(n-1)], timeout=1800)
-            with open("red"+a.split('/')[0]+str(n)+".txt",'w') as out:
+                raise TimeoutExpired(cmd=[a, "prueba"+str(n)+".net", str(n-1)], timeout=1800)
+            with open("red"+a.split('/')[0]+str(n)+".net",'w') as out:
                 out.write(str(proc.stdout))
             despues = time.time()
             tiempos_poda.append("$"+str(despues - antes)+"$")

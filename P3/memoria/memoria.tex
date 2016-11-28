@@ -357,35 +357,40 @@ es decir, la densidad depende del número de enlaces, $L$, de la red, al ir elim
 
 Los cienciogramas que he elegido para visualizar son la de \textit{Estados Unidos en el año 2002} (Figuras \hyperref[frus]{\ref*{frus}} y \hyperref[kkus]{\ref*{kkus}} y \hyperref[unitedstates2002]{Tabla \ref*{unitedstates2002}}) porque es la que más poda entre $q = 5$ y $q = n-1$ y la de \textit{España en el año 2002} (Figuras \hyperref[frsp]{\ref*{frsp}} y \hyperref[kksp]{\ref*{kksp}} y \hyperref[spain2002]{Tabla \ref*{spain2002}}) porque no poda nada una vez pasado $q = 5$.
 
-Para poder aplicar el método K-K, he tenido que anular la fuerza de atracción, ya que si no, los nodos salían demasiado pegados en las visualizaciones. A pesar de esto, he obtenido una distribución en forma de estrella en vez de la típica distribución de mapa de metro.
+En las Figuras \hyperref[frsp]{\ref*{frsp}} y \hyperref[frus]{\ref*{frus}} vemos las visualizaciones de las redes usando el método \textit{\textbf{Frutcherman-Reingold}}. En ambas redes obtenemos un resultado muy parecido: una red circular donde los nodos están a la misma distancia los unos de los otros.  Además, vemos cómo los nodos con más grado (color rojo y mayor tamaño) se quedan más o menos en el centro del círculo. Aún así, resulta difícil distinguir los nodos más importantes y los periféricos. 
 
-Con ambas redes, debido a que tienen una naturaleza muy similar, obtenemos resultados muy parecidos. Incluso, las visualizaciones las redes con cada método de distribución y distinto $q$ han dado resultados prácticamente idénticos. Por tanto, el análisis se centrará más en diferenciar al método K-K y al F-R.
+Otro aspecto a destacar de ambas figuras es la gran diferencia en cuanto a poda desde $q = 2$ hasta $q = n-1$: la visualización se queda mucho más ``limpia'' en la última poda. Con esta visualización se nota bastante la diferencia de enlaces. Por último, esta visualización impide ver las comunidades científicas que hay y además tampoco permite ver cómo de ``alejadas'' están dos disciplinas científicas.
 
-Con el método F-R, obtenemos una visualización prácticamente \textit{circular}, y en el centro se ven los enlaces con un mayor peso. En cambio, con el método K-K, obtenemos un grafo de estrella, donde en el centro se colocan una serie de nodos equidistantes entre sí y otros en las puntas de las estrellas. Otro detalle a destacar del K-K, es que ha dejado los enlaces con más peso en los nodos de la periferia, al contrario que el método F-R. Por tanto, podemos concluir que hemos obtenido grafos completamente distintos con ambos métodos.
+En las Figuras \hyperref[kksp]{\ref*{kksp}} y \hyperref[kkus]{\ref*{kkus}} vemos las visualizaciones de las redes usando el método \textit{\textbf{Kamada \& Kawaii}}. En este caso, obtenemos la típica visualización de \textit{mapa de metro}. Con $q=2$ los nodos centrales forman una comunidad en el centro mientras que con $q=n-1$ (y conforme va aumentando la poda) se van formando más comunidades y se acentúa la representación de \textit{mapa de metro}. Al igual que con la representación de \textit{Frutcherman-Reingold}, se nota mucho la diferencia de poda entre la red con $q=2$ y la red con $q=n-1$, en este caso incluso mucho más acentuada debido a que se diferencian distintas comunidades cuando eliminamos enlaces.
 
-Estas diferencias se deben a las diferencias en la naturaleza de ambos algoritmos: el F-R tiende a colocar próximos los nodos que estén conectados entre sí mientras que el K-K, se persigue conseguir las distancias teóricas que existen en el grafo. En nuestro caso, hemos tenido que anular la fuerza atractiva del K-K para que los nodos no se solapasen entre sí en un único nodo por lo que sólo hemos dejado actuar a la fuerza repulsiva. Así, con el método de distribución F-R se han colocado los nodos con más enlaces en el centro del grafo y los que tenían menos, han ido a parar a la periferia del grafo. En cambio, en el K-K, hay nodos en la periferia con muchos más enlaces que los nodos del centro.
 
-Ambas distruciones dan bastante información sobre la red, aunque necesitan de información adicional como tamaño de los nodos o un coloreado.
+En las Figuras \hyperref[oosp]{\ref*{oosp}} y \hyperref[oous]{\ref*{oous}} vemos las visualizaciones de las redes usando el método \textit{\textbf{OpenOrd}}. Los resultados obtenidos para ambos cienciogramas han sido muy parecidos: redes con distintas comunidades diferenciadas. Esta diferencia se potencia más cuando se hace una mayor poda (con un $q$ mayor). En ambos cienciogramas se aprecian mejor las distintas comunidades de la red con un $q = n-1$ que con un $q = 2$. Sobre todo en el cienciograma \textit{Spain-2002} (\hyperref[oosp]{Figura \ref*{oosp}}) donde el cienciograma con $q=2$ parece \textit{casi} una única comunidad mientras que en la red con $q = n-1$ (y también en $q = 4$ ya que la diferencia de poda es mínima entre estas dos redes) se aprecian cuatro comunidades diferenciadas.
+
+En las Figuras \hyperref[cirsp]{\ref*{cirsp}} y \hyperref[cirus]{\ref*{cirus}} vemos las visualizaciones de las redes usando un método de distribución \textit{\textbf{circular}}. Estas visualizaciones apenas aportan información alguna sobre la red, ya que no permiten distinguir ni comunidades, ni centralidad. Además, los enlaces están todos en el centro de la red muy mezclados entre sí, por lo que es difícil distinguir con qué nodos está conectado un nodo dado. También he probado con el método de distribución \textit{\textbf{radial}}, pero he preferido no incluirlo debido a que agrupando por grados, genera una red muy larga y no quedaba bien en el pdf. A diferencia del método de distribución circular, el radial agrupando por grado, nos permitía ver que había muchos nodos con el mismo grado.
+
+Por último, en las Figuras \hyperref[yfsp]{\ref*{yfsp}} y \hyperref[yhus]{\ref*{yhus}} vemos las visualizaciones de las redes usando el método \textit{\textbf{Yihan-Fu}}. Con esta visualización obtenemos comunidades claramente diferenciadas entre sí y además, aplica la filosofía del \textit{mapa de metro} del método \textit{Kamada \& Kawaii} dejando los nodos más importantes (con un mayor grado) en el centro de la red y los menos importantes en la periferia. Esta es la visualización en la que más se nota la poda de enlaces, ya que cuanto mayor es el parámetro $q$, más alejadas están las distintas comunidades entre sí. De hecho en el cienciograma \textit{United\_States-2002} obtenemos con $q = 2$ un grafo prácticamente circular y con $q = n-1$, todo lo contrario.
+
+Entre todas las visualizaciones que he aplicado, las que más me han gustado \textit{para este problema} han sido \textbf{\textit{Yihan-Fu}} y \textit{\textbf{Kamada \& Kawaii}}, debido a que son las visualizaciones que nos permiten distinguir las disciplinas científicas más importantes, debido a que están colocadas en la parte central de la red, y además también nos permiten ver cómo de alejadas están dos disciplinas científicas. Ambas aplican una filosofía muy parecida, pero entre ambas, elegiría \textit{\textbf{Yihan-Fu}} debido a su mayor eficiencia y capacidad para trabajar con redes de gran tamaño.
 
 \begin{figure}[!h]
     \centering
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 2$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q2_fr_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_fr_spain}
             \label{q2frsp}
         }
         \subfigure[PFNET($r = \infty$, $q = 3$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q3_fr_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_fr_spain}
             \label{q3frsp}
         }
     }
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 4$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q4_fr_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_fr_spain}
             \label{q4frsp}
         }
         \subfigure[PFNET($r = \infty$, $q = n-1$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/qn_fr_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_fr_spain}
             \label{qnfrsp}
         }
     }
@@ -397,21 +402,21 @@ Ambas distruciones dan bastante información sobre la red, aunque necesitan de i
     \centering
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 2$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q2_kk_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_kk_spain}
             \label{q2kksp}
         }
         \subfigure[PFNET($r = \infty$, $q = 3$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q3_kk_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_kk_spain}
             \label{q3kksp}
         }
     }
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 4$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q4_kk_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_kk_spain}
             \label{q4kksp}
         }
         \subfigure[PFNET($r = \infty$, $q = n-1$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/qn_kk_spain}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_kk_spain}
             \label{qnkksp}
         }
     }
@@ -423,21 +428,21 @@ Ambas distruciones dan bastante información sobre la red, aunque necesitan de i
     \centering
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 2$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q2_fr_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_fr_us}
             \label{q2frus}
         }
         \subfigure[PFNET($r = \infty$, $q = 3$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q3_fr_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_fr_us}
             \label{q3frus}
         }
     }
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 4$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q4_fr_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_fr_us}
             \label{q4frus}
         }
         \subfigure[PFNET($r = \infty$, $q = n-1$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/qn_fr_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_fr_us}
             \label{qnfrus}
         }
     }
@@ -449,21 +454,21 @@ Ambas distruciones dan bastante información sobre la red, aunque necesitan de i
     \centering
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 2$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q2_kk_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_kk_us}
             \label{q2kkus}
         }
         \subfigure[PFNET($r = \infty$, $q = 3$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q3_kk_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_kk_us}
             \label{q3kkus}
         }
     }
     \mbox{
         \subfigure[PFNET($r = \infty$, $q = 4$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/q4_kk_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_kk_us}
             \label{q4kkus}
         }
         \subfigure[PFNET($r = \infty$, $q = n-1$)]{
-            \includegraphics[width=0.25\textwidth]{../visualizacion/qn_kk_us}
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_kk_us}
             \label{qnkkus}
         }
     }
@@ -471,9 +476,176 @@ Ambas distruciones dan bastante información sobre la red, aunque necesitan de i
     \label{kkus}
 \end{figure}
 
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_yf_sp}
+            \label{q2yfsp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_yf_sp}
+            \label{q3yfsp}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_yf_sp}
+            \label{q4yfsp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_yf_sp}
+            \label{qnyfsp}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma Spain-2002 realizadas con el método de distribución Yihan-Fu}
+    \label{yfsp}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_oo_sp}
+            \label{q2oosp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_oo_sp}
+            \label{q3oosp}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_oo_sp}
+            \label{q4oosp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_oo_sp}
+            \label{qnoosp}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma Spain-2002 realizadas con el método de distribución OpenOrd}
+    \label{oosp}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_yf_us}
+            \label{q2yhus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_yh_us}
+            \label{q3yhus}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_yh_us}
+            \label{q4yhus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_yh_us}
+            \label{qnyhus}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma United\_States-2002 realizadas con el método de distribución Yihan-Fu}
+    \label{yhus}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_oo_us}
+            \label{q2oous}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_oo_us}
+            \label{q3oous}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_oo_us}
+            \label{q4oous}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_oo_us}
+            \label{qnoous}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma United\_States-2002 realizadas con el método de distribución OpenOrd}
+    \label{oous}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_cir_sp}
+            \label{q2cirsp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_cir_sp}
+            \label{q3cirsp}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_cir_sp}
+            \label{q4cirsp}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_cir_sp}
+            \label{qncirsp}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma Spain-2002 realizadas con el método de distribución circular}
+    \label{cirsp}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 2$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q2_cir_us}
+            \label{q2cirus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = 3$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q3_cir_us}
+            \label{q3cirus}
+        }
+    }
+    \mbox{
+        \subfigure[PFNET($r = \infty$, $q = 4$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/q4_cir_us}
+            \label{q4cirus}
+        }
+        \subfigure[PFNET($r = \infty$, $q = n-1$)]{
+            \includegraphics[width=0.5\textwidth]{../visualizacion/qn_cir_us}
+            \label{qncirus}
+        }
+    }
+    \caption{Visualizaciones de las PFNETs del cienciograma United\_States-2002 realizadas con el método de distribución circular}
+    \label{cirus}
+\end{figure}
+
 
 \section{Análisis de la eficiencia de las distintas variantes de \textit{Pathfinder} en redes de gran tamaño.}
-Para realizar las ejecuciones he hecho un script en \textit{Python} que genera las redes aleatorias usando el código C dado por el profesor y lo poda con las distintas variantes del algoritmo \textit{Pathfinder}. Como mínimo, la red generada tendrá $500$ enlaces y, como máximo $5000$. Además, la probabilidad de que exista un enlace entre dos nodos es de $0.5$.
+En la \hyperref[tiempopoda]{Tabla \ref*{tiempopoda}} vemos los tiempos obtenidos y la media tanto de enlaces como de densidad para las podas hechas con cada algoritmo. Las redes generadas no eran demasiado densas, en general la densidad media ha sido $D = 0.01$ y el número de enlaces medio está muy por debajo de $L_{max}$ debido a la dispersión de las redes generadas.
+
+En cuanto a los tiempos de ejecución, se ve perfectamente la gran diferencia de tiempo entre el algoritmo \textit{MST} y el resto. Mientras que para el caso más pequeño, 500 nodos, el \textit{original} tarda un minuto y medio, el \textit{MST} tarda menos de un segundo. Esta diferencia se acentúa conforme se aumenta el tamaño de la red: con 10000 nodos, el \textit{original} tarda más de media hora mientras que el \textit{MST}, sólo un segundo. 
+
+No hace falta comparar el algoritmo \textit{original} con el \textit{MST} para encontrarnos un gran salto, éste ya se produce comparándolo con el \textit{Binary}. A pesar de que nos pueda parecer poca la diferencia de eficiencia entre ambos ($O(n^4)$ frente a $O(n^3 log\; n)$) sólo en el caso más pequeño, 500 nodos, el algoritmo \textit{original} es 13 veces más lento. Aún así, en cuanto crece el tamaño de la red a 5000 nodos, el \textit{Binary} queda fuera de juego.
+
+En cuanto al algoritmo \textit{Fast}, consigue una mejora significativa frente al \textit{binary}: $O(n^3 log\; n)$ frente a $O(n^3)$. Esta mejora se hace notar en los tiempos de ejecución: con 2000 nodos, el \textit{binary} es 52 veces más lento que el \textit{fast}. Además, el \textit{fast} experimenta un crecimiento mucho más lento del tiempo de ejecución conforme aumenta la complejidad llegando a aguantar hasta redes con 1000 nodos en un tiempo considerable. 
+
+Por último, tenemos a los \textit{MST} con dos versiones diferentes: ambas difieren en la estructura de datos que utilizan para saber a qué clúster pertenece cada nodo. A pesar de que el algoritmo teórico tiene una mejor eficiencia que el práctico ($O(n^2 log\;n)$ frente a $O(n^3)$) esta pequeña diferencia entre ambos hace que el algoritmo práctico sea más rápido. Esta diferencia es muy pequeña (incluso en redes grandes). De hecho, en la red con 10000 nodos, el algoritmo teórico sólo fue casi dos veces más lento que el práctico. Aún así es una diferencia a tener en cuenta.
+
+
+% En cuanto a los tiempos de ejecución, vemos cómo encajan con lo que esperábamos. El algoritmo \textit{original} tiene una eficiencia de $O(n^4)$, por lo que en cuanto el número de nodos crece lo más mínimo el tiempo se dispara. Igual pasa con el algoritmo \textit{binary}, pero de forma algo más lenta debido a que su complejidad es $O(n^3 \cdot log n)$. La diferencia de tiempo entre el original y el binario es bastante grande, pero la gran diferencia entre ambos es la eficiencia en espacio. Con el algoritmo \textit{fast}, conseguimos reducir la complejidad hasta $O(n^3)$, lo cual nos permite poder operar con matrices redes algo más grandes pero, como vemos, al llegar a 10000 éste algoritmo también supera el tiempo máximo de ejecución.  Por tanto, vemos como a pesar de que $O(n^3)$ pueda parecer una eficiencia muy buena, en cuanto crece el tamaño de la entrada resulta no ser así.
 
 \begin{table}[!h]
 \begin{tabular}{rrrlllll}
@@ -487,12 +659,9 @@ $5000$ & $124525$ & $0.0099$ & $> 1800$ & $> 1800$ & $361.3296$   & $0.4194$   &
 $10000$ & $498666$ & $0.0099$ & $> 1800$ & $> 1800$ & $> 1800$ & $1.7304$   & $1.5963$    \\
 \hline
 \end{tabular}
-
-
 \caption{Tiempos de poda de cada algoritmo}
 \label{tiempopoda}
 \end{table}
-
 
 \end{document}
 
