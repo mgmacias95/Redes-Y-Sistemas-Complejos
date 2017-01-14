@@ -127,7 +127,7 @@
 \subsection{Selección del dominio y definición de la pregunta}
 Llevo muchos años participando activamente en la red social \textit{Twitter}. Durante estos años, he ido siguiendo (y dejando de seguir también) a un montón de gente muy diferente: amigos del instituto, cuentas que ponen tweets interesantes, amigos de la facultad, etc. En mi \textit{Timeline} veo tweets de todo tipo y muy diferentes entre sí, tanto que a veces se me hace algo confuso. Por tanto, me hice la siguiente pregunta: \textbf{¿podría agrupar de una forma sencilla todas las cuentas que sigo por su temática?}
 
-Dándole vueltas a esta pregunta, apliqué la siguiente lógica: los amigos de la facultad que sigo en Twitter, también se siguen entre sí. Al igual que los del instituto o la gente que conocí en un determinado evento. Es decir, si dos de las cuentas que sigo se siguen entre sí, es bastante probable que publiquen Tweets sobre temas muy similares. Así, descubrí que viendo las comunidades que hay entre mis ``amigos'' de Twitter podría agrupar las diferentes cuentas que sigo por temática.
+Dándole vueltas a esta pregunta, apliqué la siguiente lógica: los amigos de la facultad que sigo en Twitter, también se siguen entre sí. Al igual que los del instituto o la gente que conocí en un determinado evento. Es decir, si dos de las cuentas que sigo se siguen entre sí, es bastante probable que publiquen Tweets sobre temas muy similares. Así, descubrí que viendo las comunidades que hay entre mis ``amigos'' de Twitter podría agrupar las diferentes cuentas que sigo por temática. Esto se conoce como \textbf{Transitividad}.
 
 \subsection{Obtención del conjunto estructural inicial}
 Para obtener los datos, he desarrollado una sencilla aplicación con \textit{Django} y \textit{Tweepy}. He creado una base de datos en \texttt{sqlite3} en la que voy guardando usuarios de Twitter y las personas a las que siguen. Dicha aplicación se encuentra libre en \href{https://github.com/mgmacias95/TwitterFriends}{Github}.
@@ -143,7 +143,7 @@ Por tanto, debido a la naturaleza de mi red, no me ha sido necesario aplicar una
 
 El único nodo que he eliminado ha sido el nodo correspondiente a mi usuario de Twitter.
 
-\section{Cálculo de los valores de las medidas de análisis}
+\section{Cálculo de los valores de las medidas de análisis y determinación de las propiedades de la red}
 
 \begin{table}[!h]
 \centering
@@ -152,6 +152,7 @@ El único nodo que he eliminado ha sido el nodo correspondiente a mi usuario de 
 \hline
 $N$ & $542$ \\
 $L$ & $6470$ \\
+$L_{max}$ & $146611$ \\
 $D$ & $0.022$ \\
 $<k>$ & $23.875$ \\
 $d_{max}$ & $11$ \\
@@ -166,6 +167,10 @@ $L_{componente\;gigante}$ & $6468$ ($99.97\%$) \\
 \caption{Valores de las medidas globales básicas}
 \label{basicglobal}
 \end{table}
+
+En la \hyperref[basicglobal]{Tabla \ref*{basicglobal}} tenemos representados los valores de las medidas globales básicas de la red. El primer dato que llama la atención es que la \textbf{red es dispersa}, ya que $L << L_{max}$ y $<k> \ll N-1$, esto en realidad es algo normal ya que nos encontramos en una red no aleatoria, una \textit{red real}. 
+
+Además, el \textbf{grado medio} ($<k>=23.875$) nos dice que que un usuario de la red se relaciona con otros 23-24 usuarios y esto hace que mi hipotésis inicial sobre las distintas comunidades dentro de mi red de amigos en Twitter tenga sentido, \textbf{ya que cada amigo que tengo en Twitter \textit{conoce} a otros 23 amigos míos}. En la \hyperref[degree]{Figura \ref*{degree}} vemos los gráficos de distribución tanto del grado de entrada (\hyperref[din]{\thesection.\ref*{din}}) como el de salida (\hyperref[dout]{\thesection.\ref*{dout}}). Estas gráficas nos indican que no hay un nivel de interacción muy alto en la red, ya que la mayoría de nodos tienen un grado (tanto de entrada como de salida, ya que ambos gráficos son muy parecidos) por debajo de 20. Por tanto, estamos ante una \textbf{red libre de escala}, ya que hay una minoría de nodos con un grado mucho mayor a $<k>$. Esto es algo muy típico también en las redes reales. También es normal que haya nodos con grado 0, ya que algunas de las cuentas que sigo en Twitter no son seguidas por nadie más de mi entorno.
 
 \begin{figure}[!h]
     \centering
@@ -182,6 +187,29 @@ $L_{componente\;gigante}$ & $6468$ ($99.97\%$) \\
     \caption{Gráficos de distribución del grado de entrada y salida}
     \label{degree}
 \end{figure}
+
+El \textbf{diámetro} ($d_{max} = 11$) nos indica cómo de lejos están los nodos más lejanos de la red entre sí. Teniendo en cuenta la gran diversidad de usuarios que sigo, debe de haber bastante relación dentro de las distintas comunidades y además, algunos \textit{hubs} para conectarlas entre sí. Por otro lado, la \textbf{distancia media} ($<d> = 3.5$) representa la eficiencia del flujo de información en la red. En este caso, para que un \textit{Tweet} cualquiera llegase a un usuario, tendría que ser retuiteado unas 3/4 veces. La distancia media en la red aleatoria ($<d_{aleatoria}> = 1.75$) es mucho menor, esto se debe a que en redes aleatorias, la distancia media depende del $log \; N$ lo que implica que $<d>$ sea varios órdenes de magnitud menores que el tamaño de la red. En la \hyperref[dist]{Figura \ref*{dist}} vemos el gráfico de distribución de distancias, en el eje $x$ están representadas las distintas distancias (desde 0 hasta $d_{max}$) y en el eje $y$, el número de caminos en el grafo con esa distancia ($p_d$). Este número de caminos desciende en distancias superiores a $<d>$, lo que nos indica que no existen distancias grandes. Esto es consecuencia de la \textbf{propiedad de mundos pequeños}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{dist_hist}
+    \caption{Distribución de distancias}
+    \label{dist}
+\end{figure}
+
+En cuanto a la conectividad de la red, vemos que presenta 60 componentes conexas. La componente gigante agrupa el $88.93\%$ de los nodos. La mayoría de componentes conexas están formadas por los nodos con grado 0 que mencioné anteriormente: mirando la \hyperref[degree]{Figura \ref*{degree}}, vemos que hay unos 50 nodos aproximadamente con grado salida 0 y unos 45 nodos con grado de entrada 0. Las otras 10 componentes conexas son las distintas comunidades que hay entre mis amigos. El \textbf{coeficiente medio de clústering} ($<C> = 0.264$) de la red es bastante alto, lo que nos indica un alto grado de clustering local. Esto nos confirma lo que pensé en un principio sobre la transitividad de la red. En comparación con el \textit{coeficiente medio de clústering} de la red aleatoria equivalente, vemos que el de ésta es mucho mayor ($<C_{aleatoria}> = 1.726$), esto se debe a que en redes reales el coeficiente de clústering de un nodo decrece con los grados de los nodos y, además, es independiente del tamaño de la red.
+
+El valor de la \textbf{densidad} ($D = 0.022$) es algo bajo, esto nos indica que la conectividad a nivel global de la red es baja. Esto podremos confirmarlo con la visualización.
+
+
+En resumen, nuestra red tiene las siguientes propiedades:
+
+\begin{enumerate}
+    \item Es dispersa.
+    \item Es libre de escala.
+    \item Es poco densa.
+    
+\end{enumerate}
 
 \begin{figure}[!h]
     \centering
