@@ -217,7 +217,7 @@ Como vimos al estudiar la distribución tanto del grado de entrada como el de sa
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{medidas_locales/influencia}
+    \includegraphics[width=0.7\textwidth]{medidas_locales/influencia}
     \caption{Visualización de la red donde tanto el tamaño de los nodos como el coloreado corresponde con el grado de entrada: a mayor tamaño y un color más calido, más influencia tiene dicho nodo.}
     \label{influencia}
 \end{figure}
@@ -238,6 +238,25 @@ Como vimos al estudiar la distribución tanto del grado de entrada como el de sa
     \caption{Influencia de dos nodos con un grado de entrada alto}
     \label{infllocal}
 \end{figure}
+
+\subsubsection{Intermediación}
+Con la intermediación, podemos descubrir qué usuario es el que une varias comunidades de la red entre sí. Nos podría interesar para descubrir cómo llegar a varias comunidades a la vez en vez de quedarnos con la perspectiva local del grado. En la \hyperref[intermediacion]{Figura \ref*{intermediacion}} vemos la representación de la intermediación y el grado de entrada en la red. Es importante destacar cómo mucho de los nodos que antes tenían un color muy rojo debido a su alto grado de entrada, tienen ahora un color más bien frío. Esto demuestra esa perspectiva local de la que antes hemos hablado. En la \hyperref[intermediacionbrau]{Figura \ref*{intermediacionbrau}} vemos representada la influencia del usuario \textit{brau\_vl}. Este usuario sólo tiene influencia directa en el $24.91\%$ de la red, pero su influencia llega a muchas comunidades distintas. En parte es normal, ya que Braulio y yo tenemos muchos amigos en común, estudiamos juntos y solemos intercambiar cuentas interesantes para seguir. Por tanto, es normal que después de mí, sea el usuario que está en más comunidades a la vez en mi red.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{medidas_locales/intermediacion}
+    \caption{Visualización de la red donde tanto el tamaño de los nodos corresponde con el grado de entrada y el coloreado a su intermediación, cuanto más calido sea el color, más intermediación tiene un nodo.}
+    \label{intermediacion}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{medidas_locales/intermediacionbrau}
+    \caption{Intermediación del usuario \textit{brau\_vl}}
+    \label{intermediacionbrau}
+\end{figure}
+
+A parte de Braulio, no hay ningún otro usuario con un nivel de intermediación alto. Esto se ve también en la \hyperref[bet]{Figura \ref*{bet}} donde tenemos representada la distribución de la intermediación en la red. El valor de la intermediación es muy bajo prácticamente en todos los nodos de la red. De hecho, hay varios nodos con intermediación 0.
 
 \begin{figure}[!h]
     \centering
