@@ -260,7 +260,7 @@ A parte de Braulio, no hay ningún otro usuario con un nivel de intermediación 
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{distance-report/Betweenness-Centrality-Distribution}
+    \includegraphics[width=0.7\textwidth]{distance-report/Betweenness-Centrality-Distribution}
     \caption{Gráfico de distribución de la intermediación}
     \label{bet}
 \end{figure}
@@ -302,6 +302,17 @@ En la \hyperref[excenlocal]{Figura \ref*{excenlocal}} vemos el alcance de dos no
     \caption{Alcance de dos nodos con una alta excentricidad en la red con dos niveles de profundidad.}
     \label{excenlocal}
 \end{figure}
+
+\subsubsection{Centralidad de vector propio}
+En la \hyperref[evv]{Figura \ref*{evv}} vemos una representación visual de la centralidad de vector propio en la red. Esta representación es muy similar a la de la influencia (\hyperref[influencia]{Figura \ref*{influencia}}), aunque hemos eliminado algunos nodos que con su grado de entrada habíamos considerado importantes. El nodo más importante de la red según esta medida es el usuario \textit{CanalUGR}, ya que conecta a toda la comunidad universitaria de mi red. La \textit{OSLUGR} y \textit{jjmerelo} tienen también un valor muy alto de centralidad, en parte debido a que están conectados con la Universidad de Granada y a la gran cantidad de seguidores que tienen. Estos tres usuarios son los que tienen un mayor grado de entrada y, por tanto, también fueron nodos muy importantes al analizar la influencia en la red. Sin embargo, usuarios como \textit{mfgranaina} han pasado a tener una centralidad de vector propio muy pequeña, debido a que, a pesar de tener muchos seguidores ninguno era especialmente importante.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{medidas_locales/eigenvector}
+    \caption{Visualización de la red donde tanto el tamaño de los nodos corresponde con el grado de entrada y el coloreado a su centralidad de vector propio, cuanto más calido sea el color, más centralidad de vector propio tiene un nodo.}
+    \label{evv}
+\end{figure}
+
 
 \begin{figure}[!h]
     \centering
