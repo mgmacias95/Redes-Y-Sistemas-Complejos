@@ -210,9 +210,7 @@ El valor de la \textbf{densidad} ($D = 0.022$) es algo bajo, esto nos indica que
 
 \section{Cálculo de las medidas de análisis en redes sociales}
 
-\subsection{Medidas locales de centralidad}
-
-\subsubsection{Influencia}
+\subsection{Influencia}
 Como vimos al estudiar la distribución tanto del grado de entrada como el de salida (\hyperref[degree]{Figura \ref*{degree}}) había nodos con un grado muy alto y nodos con grado 0. El grado mide la influencia de un nodo a nivel local, es decir, que no nos daría información sobre un nodo importante a nivel global en la red. En la \hyperref[influencia]{Figura \ref*{influencia}} vemos una representación gráfica de cada nodo en la red. Hay varios nodos de color rojo, que parecen tener mucha influencia. Sin embargo, en la \hyperref[infllocal]{Figura \ref*{infllocal}} vemos la influencia de dos nodos que tienen un alto grado de entrada. El usuario \textit{mfgranaina} (\hyperref[mf]{\thesection .\ref*{mf}}) sólo llega a varios usuarios de Granada, y no a todos ellos, sólo un $13.1\%$ de los nodos de la red. El usuario \textit{jjmerelo} (\hyperref[jj]{\thesection .\ref*{jj}}) sólo llega a usuarios de la OSL y algunos de la ETSIIT, que aunque ésto suponga un $20.11\%$ de la red sigue siendo una influencia a nivel muy local.
 
 \begin{figure}[!h]
@@ -239,7 +237,7 @@ Como vimos al estudiar la distribución tanto del grado de entrada como el de sa
     \label{infllocal}
 \end{figure}
 
-\subsubsection{Intermediación}
+\subsection{Intermediación}
 Con la intermediación, podemos descubrir qué usuario es el que une varias comunidades de la red entre sí. Nos podría interesar para descubrir cómo llegar a varias comunidades a la vez en vez de quedarnos con la perspectiva local del grado. En la \hyperref[intermediacion]{Figura \ref*{intermediacion}} vemos la representación de la intermediación y el grado de entrada en la red. Es importante destacar cómo mucho de los nodos que antes tenían un color muy rojo debido a su alto grado de entrada, tienen ahora un color más bien frío. Esto demuestra esa perspectiva local de la que antes hemos hablado. En la \hyperref[intermediacionbrau]{Figura \ref*{intermediacionbrau}} vemos representada la influencia del usuario \textit{brau\_vl}. Este usuario sólo tiene influencia directa en el $24.91\%$ de la red, pero su influencia llega a muchas comunidades distintas. En parte es normal, ya que Braulio y yo tenemos muchos amigos en común, estudiamos juntos y solemos intercambiar cuentas interesantes para seguir. Por tanto, es normal que después de mí, sea el usuario que está en más comunidades a la vez en mi red.
 
 \begin{figure}[!h]
@@ -265,7 +263,7 @@ A parte de Braulio, no hay ningún otro usuario con un nivel de intermediación 
     \label{bet}
 \end{figure}
 
-\subsubsection{Excentricidad}
+\subsection{Excentricidad}
 En la \hyperref[excentricidad]{Figura \ref*{excentricidad}} vemos la representación visual de la excentricidad. Esta medida nos ayuda a ver cuáles son los nodos centrales de la red y cuáles son los periféricos. En este caso, los nodos periféricos son aquellos que sólo sigo yo (y por tanto no están conectados con nadie) o aquellas comunidades aisladas que no tienen apenas conexión con ningún nodo exterior. Los nodos más centrales de la red, no son ni los de mayor grado ni los de mayor intermediación sino que son nodos que debido a su posición, tienen las distancias más cortas en la red. 
 
 \begin{figure}[!h]
@@ -303,7 +301,7 @@ En la \hyperref[excenlocal]{Figura \ref*{excenlocal}} vemos el alcance de dos no
     \label{excenlocal}
 \end{figure}
 
-\subsubsection{Centralidad de vector propio}
+\subsection{Centralidad de vector propio}
 En la \hyperref[evv]{Figura \ref*{evv}} vemos una representación visual de la centralidad de vector propio en la red. Esta representación es muy similar a la de la influencia (\hyperref[influencia]{Figura \ref*{influencia}}), aunque hemos eliminado algunos nodos que con su grado de entrada habíamos considerado importantes. El nodo más importante de la red según esta medida es el usuario \textit{CanalUGR}, ya que conecta a toda la comunidad universitaria de mi red. La \textit{OSLUGR} y \textit{jjmerelo} tienen también un valor muy alto de centralidad, en parte debido a que están conectados con la Universidad de Granada y a la gran cantidad de seguidores que tienen. Estos tres usuarios son los que tienen un mayor grado de entrada y, por tanto, también fueron nodos muy importantes al analizar la influencia en la red. Sin embargo, usuarios como \textit{mfgranaina} han pasado a tener una centralidad de vector propio muy pequeña, debido a que, a pesar de tener muchos seguidores ninguno era especialmente importante.
 
 \begin{figure}[!h]
@@ -313,13 +311,161 @@ En la \hyperref[evv]{Figura \ref*{evv}} vemos una representación visual de la c
     \label{evv}
 \end{figure}
 
+\section{Detección de comunidades}
+Hemos ido viendo en las secciones previas cómo había indicios de que en esta red hubiese distintas comunidades, debido a la \textit{transitividad}. Vamos a indigar ahora sobre dichas comunidades usando los siguientes algoritmos:
+
+\begin{enumerate}[$\bullet$]
+    \item \textbf{Lovaina}: algoritmo greedy que trata de optimizar la modularidad en dos pasos. En primer lugar busca comunidades pequeñas, una vez las encuentra crea una nueva red agregando las comunidades y vuelve a repetir el paso anterior hasta que la modularidad deje de mejorar.
+    \item \textbf{Stochastic block model (\textit{degree corrected})}: modelo para generar grafos aleatorios que contengan comunidades. Este algoritmo toma una partición de los nodos en $b$ comunidades, una matriz $B \times B$ de probabilidad de enlaces entre comunidades y una secuencia $k$ de grados de los nodos. Con estos parámetros, trata coloca enlaces de forma aleatoria. El algoritmo usado usa esta idea para encontrar probabilidades de forma probabilística, es decir, que no da la partición óptima sino una buena partición.
+    \item \textbf{Nested stochastic block model (\textit{degree corrected})}: capaz de encontrar grupos pequeños en redes grandes y dar una jerarquía multinivel de la red. 
+\end{enumerate}
+
+En general, los tres algoritmos han dado resultados muy parecidos, sobre todo a la hora de detectar las comunidades más grandes.
+
+\subsection{Lovaina}
+Este algoritmo ha sido ejecutado con \textit{Gephi}. En la \hyperref[lovaina]{Figura \ref*{lovaina}} vemos una visualización de las distintas comunidades que ha encontrado en la red. En la \hyperref[comsl]{Tabla \ref*{comsl}} vemos la proporción de nodos en cada una. Las comunidades más grandes que ha encontrado se corresponden con distintas comunidades que sigo como la oficina del software libre, amigos de la facultad, amigos de mi pueblo, amigos de otros pueblos y gente relacionada con la informática de fuera de Granada. Algunas de las cuentas con un valor alto de excentricidad, que no forman parte de ninguna comunidad, han sido metidas en alguna de estas comunidades, aunque es algo normal. Creo que el punto débil de este algoritmo son las comunidades pequeñas, ya que se ha agrupado en una misma comunidad a mis amigos de murcia y a los personajes de \textit{Big Bang Theory}. Por último, todos los nodos aislados forman una comunidad con un único nodo. Por tanto, creo que la división en comunidades realizada por el algoritmo ha sido bastante acertada, sobre todo en comunidades grandes. 
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{modularity-report/communities-size-distribution}
-    \caption{Gráfico de distribución de las 66 distintas comunidades en la red}
-    \label{com}
+    \includegraphics[width=0.7\textwidth]{lovaina}
+    \caption{Distribución en comunidades calculada por el método de Lovaina}
+    \label{lovaina}
 \end{figure}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c | c}
+Clase & Proporción de nodos \\
+\hline
+Azul & $22.69\%$ \\
+Naranja & $19.74\%$ \\
+Verde & $14.76\%$ \\
+Morado & $12.36\%$ \\
+Celeste & $8.12\%$ \\
+Marrón & $6.83\%$ \\
+Magenta & $3.69\%$ \\
+Turquesa & $0.74\%$ \\
+Marino & $0.37\%$ \\
+Gris & $0.18\%$
+\end{tabular}
+\caption{Comunidades encontradas y su proporción de nodos de la red}
+\label{comsl}
+\end{table}
+
+\subsection{Stochastic block model}
+Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph tool}. En la \hyperref[blockmodel]{Figura \ref*{blockmodel}} vemos una visualización de las comunidades encontradas en este modelo y en la \hyperref[comsb]{Tabla \ref*{comsb}}, vemos la proporción de nodos en cada clase. En este caso, se han obtenido más comunidades que con el método de Lovaina con un menor tamaño, esto corrige el error que comentábamos anteriormente. Observando las comunidades creadas por el algoritmo, algunas de las comunidades (como la comunidad de la facultad) se han dividido en unas más pequeñas aunque más densas y, además en vez de considerar los nodos aislados comunidades aisladas, los ha considerado todos una misma comunidad.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{blockmodel}
+    \caption{Distribución en comunidades calculada por el método de Stochastic block model}
+    \label{blockmodel}
+\end{figure}
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{c | c}
+    Clase & Proporción de nodos \\
+    \hline
+    1  &   $17.343173\%$ \\
+    5  &   $10.332103\%$ \\
+    9  &    $7.564576\%$ \\
+    12  &   $7.380074\%$ \\
+    10  &   $6.826568\%$ \\
+    0  &    $6.642066\%$ \\
+    13  &   $6.273063\%$ \\
+    8  &    $5.904059\%$ \\
+    3  &    $5.904059\%$ \\
+    4  &    $5.166052\%$ \\
+    7  &    $3.874539\%$ \\
+    14  &   $3.874539\%$ \\
+    2  &    $3.690037\%$ \\
+    11  &   $3.136531\%$ \\
+    15  &   $3.136531\%$ \\
+    6  &    $1.476015\%$ \\
+    16  &   $0.922509\%$ \\
+    17  &   $0.553506\%$ 
+    \end{tabular}
+    \caption{Comunidades encontradas y su proporción de nodos en la red}
+    \label{comsb}
+\end{table}
+
+\subsection{Nested stochastic block model}
+Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph tool}. En la \hyperref[nested]{Figura \ref*{nested}} vemos una visualización de las comunidades encontradas en este modelo y en la \hyperref[comsb]{Tabla \ref*{comsn}}, vemos la proporción de nodos en cada clase. Este ha sido el algoritmo que más comunidades ha encontrado. También las comunidades más pequeñas, ya que la primera supone un $19.74\%$ de los nodos y, la segunda sólo un $7.19\%$. Al igual que en el algoritmo anterior, los nodos aislados forman una única comunidad. Los resultados obtenidos son, en general, bastantes parecidos al algoritmo anterior por lo que es difícil escoger entre un resultado u otro.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{nested}
+    \caption{Distribución en comunidades calculada por el método de Nested stochastic block model}
+    \label{nested}
+\end{figure}
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{c | c}
+    Clase & Proporción de nodos \\
+    \hline
+    1   &  $19.741697\%$ \\
+    0   &   $7.195572\%$ \\
+    2   &   $7.195572\%$ \\
+    16   &  $6.088561\%$ \\
+    15   &  $5.904059\%$ \\
+    3   &   $5.166052\%$ \\
+    9   &   $5.166052\%$ \\
+    5   &   $4.612546\%$ \\
+    18   &  $4.612546\%$ \\
+    17   &  $4.243542\%$ \\
+    13   &  $4.059041\%$ \\
+    4   &   $3.690037\%$ \\
+    7   &   $3.690037\%$ \\
+    10   &  $3.321033\%$ \\
+    21   &  $3.136531\%$ \\
+    14   &  $2.952030\%$ \\
+    19   &  $2.214022\%$ \\
+    12   &  $1.845018\%$ \\
+    6   &   $1.476015\%$ \\
+    11   &  $1.476015\%$ \\
+    8   &   $1.107011\%$ \\
+    20   &  $1.107011\%$ 
+    \end{tabular}
+    \caption{Comunidades encontradas y su proporción de nodos en la red}
+    \label{comsn}
+\end{table}
+
+\section{Visualización}
+El algoritmo de visualización usado durante todas las visualizaciones mostradas ha sido \textit{Fruchterman \& Reingold}. La razón por la que he escogido esta visualización es debido a que las demás alejaban demasiado a los nodos aislados, provocando una visualización muy pequeña. Con \textit{Fruchterman \& Reingold} se podían apreciar correctamente las distintas comunidades y, además, todos los nodos estaban cercanos entre sí.  En la \hyperref[vis]{Figura \ref*{vis}} vemos varias visualizaciones hechas con distintos algoritmos. En las figuras \hyperref[oo]{\thesection .\ref*{oo}} y \hyperref[yh]{\thesection .\ref*{yh}} vemos los resultados de los algoritmos \textit{OpenOrd} y \textit{Yifan Hu}. Ambos algoritmos alejaban demasiado las componentes aisladas de la red, haciendo que fuese prácticamente imposible obtener una buena visualización de la red completa. Por esta razón, descarté estos dos algoritmos en primera instancia. En las figuras \hyperref[fa]{\thesection .\ref*{fa}} y \hyperref[fa2]{\thesection .\ref*{fa2}} vemos las visualizaciones hechas por los algoritmos \textit{Force Atlas} (\textit{Kamada \& Kawai}) y \textit{Force Atlas 2}. Modificando el parámetro de la gravedad en estas visualizaciones se obtenía un buen resultado de la red, con las componentes aisladas lo suficientemente cerca. Además, nos proporcionan la estructura de metro con la que poder ver los nodos centrales y los más periféricos en la red. Ambas visualizaciones también realizan un buen agrupamiento por comunidades de los nodos, al igual que \textit{Fruchterman \& Reingold}, por lo que hubiesen sido también una buena visualización para este análisis.
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[Visualización de la red con el algoritmo \textit{Force Atlas}]{
+            \includegraphics[width=0.5\textwidth]{visualizaciones/forceatlas}
+            \label{fa}
+        }
+        \subfigure[Visualización de la red con el algoritmo \textit{Force Atlas 2}]{
+            \includegraphics[width=0.5\textwidth]{visualizaciones/forceatlas2}
+            \label{fa2}
+        }
+    }
+    \mbox{
+        \subfigure[Visualización de la red con el algoritmo OpenOrd]{
+            \includegraphics[width=0.5\textwidth]{visualizaciones/openord}
+            \label{oo}
+        }
+        \subfigure[Visualización de la red con el algoritmo Yifan Hu]{
+            \includegraphics[width=0.5\textwidth]{visualizaciones/yifanhu}
+            \label{yh}
+        }
+    }
+    \caption{Visualizaciones de la red con varios algoritmos diferentes}
+    \label{vis}
+\end{figure}
+
+\section{Discusión de los resultados obtenidos}
+
+Realizando este análisis, he descubierto que los nodos más importantes en mi red están relacionados con la universidad y la facultad, ya que es mi mayor círculo de amigos. Haciendo el análisis de comunidades, he encontrado una buena división para mi lista de amigos, lo que podría facilitarme hacer una división en listas automáticamente con un script (\textit{Tweepy}). Por tanto, creo que he respondido a la pregunta inicial del estudio exitosamente, ya que mi objetivo inicial era encontrar la división en comunidades de usuarios similares entre sí. 
+
+% calcular exponente de la red
 
 \end{document}
 
