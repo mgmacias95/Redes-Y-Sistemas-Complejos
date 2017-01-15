@@ -190,26 +190,54 @@ Además, el \textbf{grado medio} ($<k>=23.875$) nos dice que que un usuario de l
 
 El \textbf{diámetro} ($d_{max} = 11$) nos indica cómo de lejos están los nodos más lejanos de la red entre sí. Teniendo en cuenta la gran diversidad de usuarios que sigo, debe de haber bastante relación dentro de las distintas comunidades y además, algunos \textit{hubs} para conectarlas entre sí. Por otro lado, la \textbf{distancia media} ($<d> = 3.5$) representa la eficiencia del flujo de información en la red. En este caso, para que un \textit{Tweet} cualquiera llegase a un usuario, tendría que ser retuiteado unas 3/4 veces. La distancia media en la red aleatoria ($<d_{aleatoria}> = 1.75$) es mucho menor, esto se debe a que en redes aleatorias, la distancia media depende del $log \; N$ lo que implica que $<d>$ sea varios órdenes de magnitud menores que el tamaño de la red. En la \hyperref[dist]{Figura \ref*{dist}} vemos el gráfico de distribución de distancias, en el eje $x$ están representadas las distintas distancias (desde 0 hasta $d_{max}$) y en el eje $y$, el número de caminos en el grafo con esa distancia ($p_d$). Este número de caminos desciende en distancias superiores a $<d>$, lo que nos indica que no existen distancias grandes. Esto es consecuencia de la \textbf{propiedad de mundos pequeños}.
 
-\begin{figure}
+\begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{dist_hist}
+    \includegraphics[width=0.7\textwidth]{dist_hist}
     \caption{Distribución de distancias}
     \label{dist}
 \end{figure}
 
-En cuanto a la conectividad de la red, vemos que presenta 60 componentes conexas. La componente gigante agrupa el $88.93\%$ de los nodos. La mayoría de componentes conexas están formadas por los nodos con grado 0 que mencioné anteriormente: mirando la \hyperref[degree]{Figura \ref*{degree}}, vemos que hay unos 50 nodos aproximadamente con grado salida 0 y unos 45 nodos con grado de entrada 0. Las otras 10 componentes conexas son las distintas comunidades que hay entre mis amigos. El \textbf{coeficiente medio de clústering} ($<C> = 0.264$) de la red es bastante alto, lo que nos indica un alto grado de clustering local. Esto nos confirma lo que pensé en un principio sobre la transitividad de la red. En comparación con el \textit{coeficiente medio de clústering} de la red aleatoria equivalente, vemos que el de ésta es mucho mayor ($<C_{aleatoria}> = 1.726$), esto se debe a que en redes reales el coeficiente de clústering de un nodo decrece con los grados de los nodos y, además, es independiente del tamaño de la red.
+En cuanto a la conectividad de la red, vemos que presenta 60 componentes conexas. La componente gigante agrupa el $88.93\%$ de los nodos. La mayoría de componentes conexas están formadas por los nodos con grado 0 que mencioné anteriormente: mirando la \hyperref[degree]{Figura \ref*{degree}}, vemos que hay unos 50 nodos aproximadamente con grado salida 0 y unos 45 nodos con grado de entrada 0. Las otras 10 componentes conexas son las distintas comunidades que hay entre mis amigos. El \textbf{coeficiente medio de clústering} ($<C> = 0.264$) de la red es bastante alto, lo que nos indica un alto grado de clustering local. Esto nos confirma lo que pensé en un principio sobre la transitividad de la red. En la \hyperref[clust]{Figura \ref*{clust}} vemos la distribución del coeficiente de clústering en comparación con el grado ($d_{in}+d_{out}$). Como vemos, el valor del coeficiente de clústering es mucho mayor en los nodos pocos conectados que en los hubs, es decir, los nodos con grado bajo se sitúan en vecindarios muy interconectados y viceversa. Esto es consecuencia de la \textbf{jerarquía de redes}. En comparación con el \textit{coeficiente medio de clústering} de la red aleatoria equivalente, vemos que el de ésta es mucho mayor ($<C_{aleatoria}> = 1.726$), esto se debe a que en redes reales el coeficiente de clústering de un nodo decrece con los grados de los nodos y, además, es independiente del tamaño de la red.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{clust_hist}
+    \caption{Distribución del coeficiente de clústering}
+    \label{clust}
+\end{figure}
 
 El valor de la \textbf{densidad} ($D = 0.022$) es algo bajo, esto nos indica que la conectividad a nivel global de la red es baja. Esto podremos confirmarlo con la visualización.
 
+\section{Cálculo de las medidas de análisis en redes sociales}
 
-En resumen, nuestra red tiene las siguientes propiedades:
+\subsection{Medidas locales de centralidad}
 
-\begin{enumerate}
-    \item Es dispersa.
-    \item Es libre de escala.
-    \item Es poco densa.
-    
-\end{enumerate}
+\subsubsection{Influencia}
+Como vimos al estudiar la distribución tanto del grado de entrada como el de salida (\hyperref[degree]{Figura \ref*{degree}}) había nodos con un grado muy alto y nodos con grado 0. El grado mide la influencia de un nodo a nivel local, es decir, que no nos daría información sobre un nodo importante a nivel global en la red. En la \hyperref[influencia]{Figura \ref*{influencia}} vemos una representación gráfica de cada nodo en la red. Hay varios nodos de color rojo, que parecen tener mucha influencia. Sin embargo, en la \hyperref[infllocal]{Figura \ref*{infllocal}} vemos la influencia de dos nodos que tienen un alto grado de entrada. El usuario \textit{mfgranaina} (\hyperref[mf]{\thesection .\ref*{mf}}) sólo llega a varios usuarios de Granada, y no a todos ellos, sólo un $13.1\%$ de los nodos de la red. El usuario \textit{jjmerelo} (\hyperref[jj]{\thesection .\ref*{jj}}) sólo llega a usuarios de la OSL y algunos de la ETSIIT, que aunque ésto suponga un $20.11\%$ de la red sigue siendo una influencia a nivel muy local.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{medidas_locales/influencia}
+    \caption{Visualización de la red donde tanto el tamaño de los nodos como el coloreado corresponde con el grado de entrada: a mayor tamaño y un color más calido, más influencia tiene dicho nodo.}
+    \label{influencia}
+\end{figure}
+
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[Influencia del usuario \textit{mfgranaina}]{
+            \includegraphics[width=0.5\textwidth]{medidas_locales/influenciamf}
+            \label{mf}
+        }
+        \subfigure[Influencia del usuario \textit{jjmerelo}]{
+            \includegraphics[width=0.5\textwidth]{medidas_locales/influenciajj}
+            \label{jj}
+        }
+    }
+    \caption{Influencia de dos nodos con un grado de entrada alto}
+    \label{infllocal}
+\end{figure}
 
 \begin{figure}[!h]
     \centering
