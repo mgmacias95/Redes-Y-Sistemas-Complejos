@@ -444,7 +444,55 @@ Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph
     \label{comsn}
 \end{table}
 
-\newpage
+\subsection{Estudiando cada comunidad por separado}
+Usando la división hecha por el método de \textit{Lovaina}, vamos a hacer un breve análisis para descubrir el nodo más central en cada comunidad. En la \hyperref[comunidades]{Figura \ref*{comunidades}} vemos un filtro en la red de las comunidades más grandes encontradas por el algoritmo de Lovaina en Gephi. Algunos de los nodos están repetidos en varias comunidades, lo que nos puede dar una idea de su importancia y de su intermediación. Por ejemplo, el usuario \textit{CanalUGR} se encuentra en varias comunidades (\hyperref[c0]{\thesection .\ref*{c0}}, \hyperref[c2]{\thesection .\ref*{c2}} y \hyperref[c3]{\thesection .\ref*{c3}}), todas las comunidades de gente universitaria. Localmente, hay nodos que destacan sobre los demás en todas las comunidades.
+
+En la comunidad de los miembros de la Oficina del Software Libre (\hyperref[c0]{\thesection .\ref*{c0}}) destaca \textit{OSLUGR} y \textit{jjmerelo} (además de \textit{CanalUGR}). El resto de nodos que destacan, es porque están siendo apuntados por estos. Esta comunidad está totalmente conectada entre sí y, por tanto, es muy densa. Es por eso que todos los algoritmos de detección de comunidades la han detectado. 
+
+En la segunda comunidad (\hyperref[c1]{\thesection .\ref*{c1}}) se encuentran algunas de las cuentas \textit{tuitstar} más populares entre mis amigos, por tanto, los miembros que componen esta comunidad son dichas cuentas y mis amigos. En este caso, no tendría mucho sentido ver qué usuario es el más importante, ya que estamos en una comunidad poco densa. Los miembros con mayor centralidad de vector propio son amigos míos que forman un cliqué, descontándolos a ellos, diría que la cuenta más popular entre mis amigos es \textit{pccomponentes}.
+
+En la comunidad de amigos de la facultad (\hyperref[c2]{\thesection .\ref*{c2}}), el nodo más importante es \textit{CanalUGR} por razones obvias. En esta comunidad, Gephi ha mezclado a mis amigos de la facultad con mis amigos del pueblo, por tanto, esta comunidad debería estar dividida en dos. Aún así, diría que mi amigo más popular en la facultad es \textit{Koltharius}, ya que es el nodo con una mayor centralidad de vector propio en la comunidad. Aún así, esta comunidad debería estar dividida en dos. De hecho, la cuarta comunidad (\hyperref[c3]{\thesection .\ref*{c3}}) es un subconjunto de la anterior, en la que sólo se ven a mis amigos del instituto. Quizá si eliminásemos el nodo \textit{CanalUGR} esto no hubiese pasado.
+
+En la quinta comunidad (\hyperref[c4]{\thesection .\ref*{c4}}) ha sido representada con un algoritmo \textit{Kamada \& Kawaii}, para poder hacer ver que, en realidad, serían cuatro comunidades diferentes. Por tanto, la medida de centralidad de vector propio no es muy representativa ya que hay varios grupos que hacen un cliqué, llevándose toda la importancia. Además, al ser cuatro comunidades diferentes no tiene sentido estudiarla como una sola.
+
+Por último, la comunidad de amigos externos a la facultad (\hyperref[c5]{\thesection .\ref*{c5}}) no es muy densa, ya que no todos se conocen entre sí. Aún así, hay una clara evidencia de que los usuarios \textit{HelenaDiGiusti} y \textit{redbeard94} tienen bastante importancia en la red.
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[Primera comunidad formada por los miembros de la Oficina del Software libre]{
+            \includegraphics[width=0.5\textwidth]{comunidades/c0}
+            \label{c0}
+        }
+        \subfigure[Segunda comunidad formada por algunos amigos y cuentas externas]{
+            \includegraphics[width=0.5\textwidth]{comunidades/c1}
+            \label{c1}
+        }
+    }
+    \mbox{
+        \subfigure[Tercera comunidad formada por amigos de la facultad y mi pueblo]{
+            \includegraphics[width=0.5\textwidth]{comunidades/c2}
+            \label{c2}
+        }
+        \subfigure[Cuarta comunidad formada por amigos de mi instituto]{
+            \includegraphics[width=0.5\textwidth]{comunidades/c3}
+            \label{c3}
+        }
+    }
+    \mbox{
+        \subfigure[Quinta comunidad formada por amigos de murcia, los personajes de Big Bang Theory y bandas de música]{
+            \includegraphics[width=0.5\textwidth]{comunidades/c4}
+            \label{c4}
+        }
+        \subfigure[Sexta comunidad formada por amigos externos a la facultad]{
+            \includegraphics[width=0.5\textwidth]{comunidades/c5}
+            \label{c5}
+        }
+    }
+    \caption{Comunidades más granes obtenidas por el algoritmo de Lovaina. El tamaño de los nodos corresponde a su grado de entrada y el coloreado, a su centralidad de vector propio.}
+    \label{comunidades}
+\end{figure}
+
 \section{Visualización}
 El algoritmo de visualización usado durante todas las visualizaciones mostradas ha sido \textit{Fruchterman \& Reingold}. La razón por la que he escogido esta visualización es debido a que las demás alejaban demasiado a los nodos aislados, provocando una visualización muy pequeña. Con \textit{Fruchterman \& Reingold} se podían apreciar correctamente las distintas comunidades y, además, todos los nodos estaban cercanos entre sí.  En la \hyperref[vis]{Figura \ref*{vis}} vemos varias visualizaciones hechas con distintos algoritmos. En las figuras \hyperref[oo]{\thesection .\ref*{oo}} y \hyperref[yh]{\thesection .\ref*{yh}} vemos los resultados de los algoritmos \textit{OpenOrd} y \textit{Yifan Hu}. Ambos algoritmos alejaban demasiado las componentes aisladas de la red, haciendo que fuese prácticamente imposible obtener una buena visualización de la red completa. Por esta razón, descarté estos dos algoritmos en primera instancia. En las figuras \hyperref[fa]{\thesection .\ref*{fa}} y \hyperref[fa2]{\thesection .\ref*{fa2}} vemos las visualizaciones hechas por los algoritmos \textit{Force Atlas} (\textit{Kamada \& Kawai}) y \textit{Force Atlas 2}. Modificando el parámetro de la gravedad en estas visualizaciones se obtenía un buen resultado de la red, con las componentes aisladas lo suficientemente cerca. Además, nos proporcionan la estructura de metro con la que poder ver los nodos centrales y los más periféricos en la red. Ambas visualizaciones también realizan un buen agrupamiento por comunidades de los nodos, al igual que \textit{Fruchterman \& Reingold}, por lo que hubiesen sido también una buena visualización para este análisis.
 
