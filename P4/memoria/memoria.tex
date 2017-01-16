@@ -28,6 +28,7 @@
 \usepackage{tikz}
 % \usepackage{pgfplots}
 % \pgfplotsset{compat=1.5}
+\usepackage{minted}
 
 \usepackage{subfigure}
 
@@ -91,6 +92,15 @@
 
 % \usepackage{pdflscape}
 
+\newmintedfile[mypy]{python}{
+    linenos, % muestra el número de línea
+    numbersep=5pt, % separación entre el código y el número de línea
+    gobble=0, % columna desde la que empieza a mostrar código
+    frame=lines, % dibuja las líneas enmarcando el código
+    framesep=2mm, % separación entre la línea y el código
+    tabsize=3, % tamaño de la tabulación
+}
+
 %----------------------------------------------------------------------------------------
 % DOCUMENTO
 %----------------------------------------------------------------------------------------
@@ -117,6 +127,8 @@
 \end{titlepage}
 
 \tableofcontents % para generar el índice de contenidos
+
+\newpage
 
 % \listoffigures
 
@@ -353,7 +365,7 @@ Gris & $0.18\%$
 \end{table}
 
 \subsection{Stochastic block model}
-Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph tool}. En la \hyperref[blockmodel]{Figura \ref*{blockmodel}} vemos una visualización de las comunidades encontradas en este modelo y en la \hyperref[comsb]{Tabla \ref*{comsb}}, vemos la proporción de nodos en cada clase. En este caso, se han obtenido más comunidades que con el método de Lovaina con un menor tamaño, esto corrige el error que comentábamos anteriormente. Observando las comunidades creadas por el algoritmo, algunas de las comunidades (como la comunidad de la facultad) se han dividido en unas más pequeñas aunque más densas y, además en vez de considerar los nodos aislados comunidades aisladas, los ha considerado todos una misma comunidad.
+Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph tool} \cite{peixoto_graph-tool_2014}. En la \hyperref[blockmodel]{Figura \ref*{blockmodel}} vemos una visualización de las comunidades encontradas en este modelo y en la \hyperref[comsb]{Tabla \ref*{comsb}}, vemos la proporción de nodos en cada clase. En este caso, se han obtenido más comunidades que con el método de Lovaina con un menor tamaño, esto corrige el error que comentábamos anteriormente. Observando las comunidades creadas por el algoritmo, algunas de las comunidades (como la comunidad de la facultad) se han dividido en unas más pequeñas aunque más densas y, además en vez de considerar los nodos aislados comunidades aisladas, los ha considerado todos una misma comunidad.
 
 \begin{figure}[!h]
     \centering
@@ -391,7 +403,7 @@ Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph
 \end{table}
 
 \subsection{Nested stochastic block model}
-Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph tool}. En la \hyperref[nested]{Figura \ref*{nested}} vemos una visualización de las comunidades encontradas en este modelo y en la \hyperref[comsb]{Tabla \ref*{comsn}}, vemos la proporción de nodos en cada clase. Este ha sido el algoritmo que más comunidades ha encontrado. También las comunidades más pequeñas, ya que la primera supone un $19.74\%$ de los nodos y, la segunda sólo un $7.19\%$. Al igual que en el algoritmo anterior, los nodos aislados forman una única comunidad. Los resultados obtenidos son, en general, bastantes parecidos al algoritmo anterior por lo que es difícil escoger entre un resultado u otro.
+Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph tool} \cite{peixoto_graph-tool_2014}. En la \hyperref[nested]{Figura \ref*{nested}} vemos una visualización de las comunidades encontradas en este modelo y en la \hyperref[comsb]{Tabla \ref*{comsn}}, vemos la proporción de nodos en cada clase. Este ha sido el algoritmo que más comunidades ha encontrado. También las comunidades más pequeñas, ya que la primera supone un $19.74\%$ de los nodos y, la segunda sólo un $7.19\%$. Al igual que en el algoritmo anterior, los nodos aislados forman una única comunidad. Los resultados obtenidos son, en general, bastantes parecidos al algoritmo anterior por lo que es difícil escoger entre un resultado u otro.
 
 \begin{figure}[!h]
     \centering
@@ -432,6 +444,7 @@ Este algoritmo ha sido calculado con el paquete de \texttt{python} \textit{Graph
     \label{comsn}
 \end{table}
 
+\newpage
 \section{Visualización}
 El algoritmo de visualización usado durante todas las visualizaciones mostradas ha sido \textit{Fruchterman \& Reingold}. La razón por la que he escogido esta visualización es debido a que las demás alejaban demasiado a los nodos aislados, provocando una visualización muy pequeña. Con \textit{Fruchterman \& Reingold} se podían apreciar correctamente las distintas comunidades y, además, todos los nodos estaban cercanos entre sí.  En la \hyperref[vis]{Figura \ref*{vis}} vemos varias visualizaciones hechas con distintos algoritmos. En las figuras \hyperref[oo]{\thesection .\ref*{oo}} y \hyperref[yh]{\thesection .\ref*{yh}} vemos los resultados de los algoritmos \textit{OpenOrd} y \textit{Yifan Hu}. Ambos algoritmos alejaban demasiado las componentes aisladas de la red, haciendo que fuese prácticamente imposible obtener una buena visualización de la red completa. Por esta razón, descarté estos dos algoritmos en primera instancia. En las figuras \hyperref[fa]{\thesection .\ref*{fa}} y \hyperref[fa2]{\thesection .\ref*{fa2}} vemos las visualizaciones hechas por los algoritmos \textit{Force Atlas} (\textit{Kamada \& Kawai}) y \textit{Force Atlas 2}. Modificando el parámetro de la gravedad en estas visualizaciones se obtenía un buen resultado de la red, con las componentes aisladas lo suficientemente cerca. Además, nos proporcionan la estructura de metro con la que poder ver los nodos centrales y los más periféricos en la red. Ambas visualizaciones también realizan un buen agrupamiento por comunidades de los nodos, al igual que \textit{Fruchterman \& Reingold}, por lo que hubiesen sido también una buena visualización para este análisis.
 
@@ -465,7 +478,34 @@ El algoritmo de visualización usado durante todas las visualizaciones mostradas
 
 Realizando este análisis, he descubierto que los nodos más importantes en mi red están relacionados con la universidad y la facultad, ya que es mi mayor círculo de amigos. Haciendo el análisis de comunidades, he encontrado una buena división para mi lista de amigos, lo que podría facilitarme hacer una división en listas automáticamente con un script (\textit{Tweepy}). Por tanto, creo que he respondido a la pregunta inicial del estudio exitosamente, ya que mi objetivo inicial era encontrar la división en comunidades de usuarios similares entre sí. 
 
-% calcular exponente de la red
+En cuanto a las propiedades de la red, mirando la distribución de grados y distancias concluimos que la red era una red libre de escala y de mundos pequeños. Para verificarlo, he calculado el exponente de la red siguiendo la siguiente ecuación:
+
+\begin{displaymath}
+p_k \approx k^{- \gamma} \qquad \longrightarrow \qquad \log p_k \approx - \gamma \log k \qquad \Longrightarrow \qquad \gamma \approx - \frac{\log p_k}{\log k}
+\end{displaymath}
+
+Siendo más concreta, he programado un script en el que cuento el número de nodos que tienen un grado $k$, para así obtener $p_k$, repito el proceso tantas veces como vértices haya y hago la media, sin contar los $p_k = 0$ y $k = [0,1]$, ya que $\log 0$ no existe y $\log 1 = 0$, lo cual nos da un fallo al dividir.
+
+Al ser mi red dirigida, he calculado tanto $\gamma^{in}$ como $\gamma^{out}$:
+
+\begin{displaymath}
+    \gamma^{in} = 1.5816 \qquad\ \gamma^{out}:  1.575398
+\end{displaymath}
+
+Estamos ante un caso muy especial: $\gamma < 2$. Una red con este exponente es una red en la que el grado del mayor hub crece con más rapidez que la red. Esto es debido a que según la siguiente ecuación, el límite natural de una red libre de escala es
+
+\begin{displaymath}
+    k_{max} \approx k_{min} N^{\frac{1}{\gamma - 1}}
+\end{displaymath}
+
+es decir, según esta ecuación, cuanto más grande sea una red mayor será el grado de su mayor hub. Ahora bien, si $\gamma < 2$ el exponente $\frac{1}{\gamma - 1}$ es mayor a uno y, por tanto, el grado del mayor hub crece más rápido que el tamaño de la red. Este es un caso bastante raro, ya que sólo puede darse si los hubs tienen auto enlaces o si varios enlaces pueden conectar el mismo par de nodos. En este caso no se da ninguna de las dos, pero en la red hay muy pocos hubs y además, es bastante pequeña. Lo que sí podemos confirmar es que \textbf{no estamos ante una red de mundos pequeños o ultra pequeños}. Toda esta información ha sido consultada en \cite{scalefree}.
+
+\mypy[label={exponente.py}]{../exponente.py}
+
+En comparación con otras redes estudiadas en la asignatura, esta es demasiado pequeña y prácticamente se podría considerar de juguete. Sin embargo, me ha parecido una forma muy creativa de resolver mi problema. Las otras redes libres de escala vistas en el tema 5 de la asignatura, y disponibles también en \cite{scalefree}, son redes de mundos ultra pequeños con $3 < \gamma < 2$. De las estudiadas, creo que la más similar a mi red es la \textit{Actor Network}, ya que tiene un $<k>$ alto y un $\gamma$ de $2.15$, es decir, pequeño aunque no tanto como en mi caso (aunque, como he dicho, creo que en mi caso se debe a que la red es muy pequeña).
+
+\bibliography{bibliografia} %archivo citas.bib que contiene las entradas 
+\bibliographystyle{siam} % hay varias formas de citar
 
 \end{document}
 

@@ -10,12 +10,12 @@ pos_arf = arf_layout(g=g)
 # https://en.wikipedia.org/wiki/Stochastic_block_model
 state1 = minimize_blockmodel_dl(g=g)
 # lo pintamos
-state1.draw(pos=pos_arf, output="memoria/blockmodel.png", output_size=(1024,768))
+state1.draw(pos=pos_arf, output="memoria/a.png", output_size=(1024,768))
 
 # realizamos la detección de comunidades usando la versión nested
 state2 = minimize_nested_blockmodel_dl(g=g)
 # lo pintamos
-state2.draw(pos=pos_arf, output="memoria/nested.png", output_size=(1024,768))
+state2.draw(output="memoria/b.png", output_size=(1024,768))
 
 # tratamos de ver a qué comunidad pertenece cada nodo
 coms1 = state1.get_blocks().get_array()
