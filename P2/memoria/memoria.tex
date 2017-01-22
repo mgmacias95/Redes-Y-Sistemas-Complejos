@@ -88,7 +88,7 @@
 \normalfont \normalsize 
 {\bf Redes y Sistemas Complejos} \\ Curso 2016-2017 \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge \textsc{Práctica 2: \\ Procedimientos generales de \\ las redes mediante \textit{Gephi} y \\ simuladores en \textit{Netlogo}} \\ % The assignment title
+\huge \textsc{Práctica 2: \\ Procedimientos generales de \\ las redes mediante \textit{Gephi} y \\ simuladores en \textit{Netlogo} \\ Tema 2: Grafos} \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -114,8 +114,8 @@
 \normalfont \normalsize 
 {\bf Redes y Sistemas Complejos} \\ Curso 2016-2017 \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-{\huge \textsc{Práctica 2: \\ Procedimientos generales de \\ las redes mediante \textit{Gephi} y \\ simuladores en \textit{Netlogo}}} % The assignment title
-\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+{\huge \textsc{Práctica 2: \\ Procedimientos generales de \\ las redes mediante \textit{Gephi} y \\ simuladores en \textit{Netlogo} \\[0.5cm] Tema 2: Grafos}} % The assignment title
+\horrule{2pt} \\[0.8cm] % Thick bottom horizontal rule
 
 {\Large \textit{Marta Gómez Macías} \\ \texttt{mgmacias95@correo.ugr.es} \\ 75929776Z \\[0.5cm]
 
@@ -124,11 +124,9 @@
 \end{titlepage}
 
 \tableofcontents % para generar el índice de contenidos
-\newpage
+% \newpage
 
-\setcounter{section}{1}
-\section{Grafos}
-\subsection{Componente gigante de una Red Aleatoria}
+\section{Componente gigante de una Red Aleatoria}
 En el modelo de \textit{Netlogo} proporcionado tenemos una red aleatoria de $x$ enlaces y, en cada iteración, se genera un enlace entre dos nodos con una probabilidad uniforme, es decir, todos los nodos tienen la misma probabilidad de tener un enlace entre sí. En la \hyperref[cg80]{Figura \ref*{cg80}} muestro una evolución de la red aleatoria. Inicialmente, tenemos una red dispersa (\hyperref[cg80-1]{Figura \thesection .\ref*{cg80-1}}) donde la componente gigante está formada por menos de diez nodos. Desde el momento en el que se llega a $<k>=1$, en la \hyperref[cg80-2]{Figura \thesection .\ref*{cg80-2}}, \textbf{el tamaño de la componente gigante se incrementa mucho más rápido}. En la \hyperref[cg80-3]{Figura \thesection .\ref*{cg80-3}} vemos una representación de la red 34 iteraciones después, en esas 34 iteraciones el tamaño de la componente gigante se ha duplicado. Por último, en la \hyperref[cg80-4]{Figura \thesection .\ref*{cg80-4}} vemos el instante en el que la componente gigante ha cubierto todos los nodos de la red. Si nos fijamos en la gráfica de esta última figura, vemos que la pendiente de la misma se ha incrementado a partir del momento $<k>=1$, este incremento ha sido mucho mayor al principio (\hyperref[cg80-3]{Figura \thesection .\ref*{cg80-3}}) ya que al final de la ejecución del modelo muchos de los nuevos enlaces que surgían en cada iteración eran conexiones entre nodos de la componente gigante.
 
 \begin{figure}[!h]
@@ -171,7 +169,7 @@ Si fijamos $S = 0$, obtenemos una transición de fase en $<k>=1$ (\hyperref[cgd]
     \label{cgd}
 \end{equation}
 
-\subsubsection{Prueba de conceptos}
+\subsection{Prueba de conceptos}
 \exe{Deja correr el modelo hasta el final. ¿Responde la componente gigante obtenida a las características de dicho nombre?}
 
 \sol{Sí, de hecho, si dejamos correr el algoritmo hasta el final, $<k> = N$, por lo que tendríamos un grafo totalmente conectado donde $L = L_{max}$.}
@@ -203,7 +201,7 @@ En cuanto al parecido de los gráficos en diferentes ejecuciones, tanto en redes
 \end{figure}
 }
 
-\subsubsection{Extensión del modelo}
+\subsection{Extensión del modelo}
 
 \exe{En este momento, la probabilidad de que dos nodos cualesquiera queden conectados entre sí es la misma. ¿Puedes pensar en formas de hacer que algunos nodos sean más atractivos para conectarse que otros? ¿Cómo influiría eso en la formación de la componente gigante?}
 
@@ -218,9 +216,9 @@ Esto haría que la red dejase de ser aleatoria y pasase a ser una red real con h
     \label{pref}
 \end{figure}}
 
-\subsection{Dos componentes gigantes de una Red Aleatoria}
+\section{Dos componentes gigantes de una Red Aleatoria}
 
-En la \hyperref[2cg20]{Figura \ref*{2cg20}} vemos la evolución de la ejecución del modelo en una red con $N=40$ nodos. Añadiendo algo más de $N$ enlaces (\hyperref[2cg40-2]{Figura \thesection .\ref*{2cg40-2}}) entre las dos componentes gigantes podemos mezclarlas, tal y como se ha hecho en la \hyperref[2cg40-3]{Figura \thesection .\ref*{2cg40-3}}. 
+En la \hyperref[2cg20]{Figura \ref*{2cg20}} vemos la evolución de la ejecución del modelo en una red con $N=40$ nodos. Añadiendo un par de enlaces más (\hyperref[2cg40-2]{Figura \thesection .\ref*{2cg40-2}}) entre las dos componentes gigantes podemos mezclarlas, tal y como se ha hecho en la \hyperref[2cg40-3]{Figura \thesection .\ref*{2cg40-3}}.
 
 \begin{figure}[!h]
     \centering
@@ -235,11 +233,11 @@ En la \hyperref[2cg20]{Figura \ref*{2cg20}} vemos la evolución de la ejecución
         }
     }
     \mbox{
-        \subfigure[Tras 60 clicks a \textit{add one edge}, tenemos bastantes enlaces conectando las dos componentes]{
+        \subfigure[Haciendo un par de clicks, conseguimos un enlace entre ambas componentes]{
             \includegraphics[width=0.5\textwidth]{2cg40-2}
             \label{2cg40-2}
         }
-        \subfigure[Si revisualizamos la red, ambas componentes gigantes quedan mezcladas]{
+        \subfigure[Si revisualizamos la red, ambas componentes gigantes quedan conectadas por el enlace que hemos añadido]{
             \includegraphics[width=0.5\textwidth]{2cg40-3}
             \label{2cg40-3}
         }
@@ -248,7 +246,7 @@ En la \hyperref[2cg20]{Figura \ref*{2cg20}} vemos la evolución de la ejecución
     \label{2cg20}
 \end{figure}
 
-\subsubsection{Aspectos importantes}
+\subsection{Aspectos importantes}
 
 \exe{¿Tiene sentido que los grafos aleatorios sólo generen una componente gigante?}
 
@@ -260,5 +258,47 @@ En la \hyperref[2cg20]{Figura \ref*{2cg20}} vemos la evolución de la ejecución
     \item En el \textbf{régimen supercrítico} hay una única componente gigante real. Este régimen se mantiene hasta que todos los nodos son absorbidos por esta componente gigante.
     \item En el \textbf{régimen conectado}, para valores grandes de $p$ la componente gigante absorbe todos los nodos y componentes. En este estado la red sigue siendo dispersa.
 \end{enumerate}}
+
+\section{Componente Gigante de un Retículo 2D}
+En la \hyperref[lattice90]{Figura \ref*{lattice90}} vemos la ejecución del molode de difusión en una red cuadrada. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{lattice90}
+    \caption{Ejecución del modelo de difusión en una red cuadrada 2D}
+    \label{lattice90}
+\end{figure}
+
+\subsection{Aspectos importantes}
+
+\exe{¿Existe un valor crítico de $p$ a partir del cual se forma una componente gigante?}
+
+\sol{Como se ve en la \hyperref[lattice90]{Figura \ref*{lattice90}}, la pendiente de la gráfica aumenta hasta ser prácticamente vertical cuando $p = 0.6$. Conforme $p$ aumenta, el número de nodos activados aumenta y la probabilidad de que dos nodos activados puedan conectarse también. A partir de $p=0.6$, tenemos un número de nodos activados suficiente como para poder conectar diferentes áreas del retículo. En la \hyperref[lattice]{Figura \ref*{lattice}} se aprecia este razonamiento: cuando $p=0.3$ la componente gigante es bastante minúscula y la diferencia con la componente gigante obtenida con $p=0.55$ es muy pequeña. En cambio, cuando damos el salto a $p=0.6$, el tamaño de la componente gigante crece exponencialmente.
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[Componente conexa con $p=0.3$]{
+            \includegraphics[width=0.5\textwidth]{lattice30}
+            \label{lattice30}
+        }
+        \subfigure[Componente conexa con $p=0.55$]{
+            \includegraphics[width=0.5\textwidth]{lattice55}
+            \label{lattice55}
+        }
+    }
+    \mbox{
+        \subfigure[Componente conexa con $p=0.60$]{
+            \includegraphics[width=0.5\textwidth]{lattice60}
+            \label{lattice60}
+        }
+        \subfigure[Componente conexa con $p=0.75$]{
+            \includegraphics[width=0.5\textwidth]{lattice75}
+            \label{lattice75}
+        }
+    }
+    \caption{Componentes conexas conseguidas para diferentes valores de $p$}
+    \label{lattice}
+\end{figure}}
 
 \end{document}
