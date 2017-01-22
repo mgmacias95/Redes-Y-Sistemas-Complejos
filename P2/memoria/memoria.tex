@@ -128,7 +128,7 @@
 
 \setcounter{section}{1}
 \section{Grafos}
-\subsection{Componente gigante}
+\subsection{Componente gigante de una Red Aleatoria}
 En el modelo de \textit{Netlogo} proporcionado tenemos una red aleatoria de $x$ enlaces y, en cada iteración, se genera un enlace entre dos nodos con una probabilidad uniforme, es decir, todos los nodos tienen la misma probabilidad de tener un enlace entre sí. En la \hyperref[cg80]{Figura \ref*{cg80}} muestro una evolución de la red aleatoria. Inicialmente, tenemos una red dispersa (\hyperref[cg80-1]{Figura \thesection .\ref*{cg80-1}}) donde la componente gigante está formada por menos de diez nodos. Desde el momento en el que se llega a $<k>=1$, en la \hyperref[cg80-2]{Figura \thesection .\ref*{cg80-2}}, \textbf{el tamaño de la componente gigante se incrementa mucho más rápido}. En la \hyperref[cg80-3]{Figura \thesection .\ref*{cg80-3}} vemos una representación de la red 34 iteraciones después, en esas 34 iteraciones el tamaño de la componente gigante se ha duplicado. Por último, en la \hyperref[cg80-4]{Figura \thesection .\ref*{cg80-4}} vemos el instante en el que la componente gigante ha cubierto todos los nodos de la red. Si nos fijamos en la gráfica de esta última figura, vemos que la pendiente de la misma se ha incrementado a partir del momento $<k>=1$, este incremento ha sido mucho mayor al principio (\hyperref[cg80-3]{Figura \thesection .\ref*{cg80-3}}) ya que al final de la ejecución del modelo muchos de los nuevos enlaces que surgían en cada iteración eran conexiones entre nodos de la componente gigante.
 
 \begin{figure}[!h]
@@ -213,9 +213,52 @@ Esto haría que la red dejase de ser aleatoria y pasase a ser una red real con h
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.7\textwidth]{pref}
+    \includegraphics[width=0.5\textwidth]{pref}
     \caption{Ejecución del modelo \textit{Preferential Attachment}}
     \label{pref}
 \end{figure}}
+
+\subsection{Dos componentes gigantes de una Red Aleatoria}
+
+En la \hyperref[2cg20]{Figura \ref*{2cg20}} vemos la evolución de la ejecución del modelo en una red con $N=40$ nodos. Añadiendo algo más de $N$ enlaces (\hyperref[2cg40-2]{Figura \thesection .\ref*{2cg40-2}}) entre las dos componentes gigantes podemos mezclarlas, tal y como se ha hecho en la \hyperref[2cg40-3]{Figura \thesection .\ref*{2cg40-3}}. 
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[Configuración inicial de 40 nodos, 20 de cada clase]{
+            \includegraphics[width=0.5\textwidth]{2cg40}
+            \label{2cg40}
+        }
+        \subfigure[Creación de las dos componentes gigantes separadas]{
+            \includegraphics[width=0.5\textwidth]{2cg40-1}
+            \label{2cg40-1}
+        }
+    }
+    \mbox{
+        \subfigure[Tras 60 clicks a \textit{add one edge}, tenemos bastantes enlaces conectando las dos componentes]{
+            \includegraphics[width=0.5\textwidth]{2cg40-2}
+            \label{2cg40-2}
+        }
+        \subfigure[Si revisualizamos la red, ambas componentes gigantes quedan mezcladas]{
+            \includegraphics[width=0.5\textwidth]{2cg40-3}
+            \label{2cg40-3}
+        }
+    }
+    \caption{Mezclando dos componentes gigantes de 20 nodos cada una}
+    \label{2cg20}
+\end{figure}
+
+\subsubsection{Aspectos importantes}
+
+\exe{¿Tiene sentido que los grafos aleatorios sólo generen una componente gigante?}
+
+\sol{Sí, ya que la evolución de de una red aleatoria tiende a formar una única componente gigante:
+
+\begin{enumerate}[$\qquad\ \bullet$]
+    \item En el \textbf{régimen subcrítico}, no existe ninguna componente gigante, sino que hay clústers aislados.
+    \item En el \textbf{régimen crítico}, aparece una única componente gigante, que contiene una fracción pequeña de nodos.
+    \item En el \textbf{régimen supercrítico} hay una única componente gigante real. Este régimen se mantiene hasta que todos los nodos son absorbidos por esta componente gigante.
+    \item En el \textbf{régimen conectado}, para valores grandes de $p$ la componente gigante absorbe todos los nodos y componentes. En este estado la red sigue siendo dispersa.
+\end{enumerate}}
 
 \end{document}
