@@ -283,6 +283,27 @@ Por tanto, las opciones correctas son la \textbf{a} y la \textbf{c}.
     \item Una componente gigante mayor con un número pequeño de vecinos.
 \end{enumerate}
 }
-\sol{}
+
+\sol{En la \hyperref[cmpgrer]{Figura \ref*{cmpgrer}} vemos una comparación entre una red ER y una red de crecimiento. 
+
+La distribución de grados de la red ER es mucho más uniforme que la distibución de la red de crecimiento. La distribución de la red de crecimiento es más similar a una red real, con muchos nodos con un grado muy pequeño y algunos hubs, con un grado muy grande. Por tanto, \textbf{la red de crecimiento tiene un mayor número de hubs}. En cambio, \textbf{el tamaño de la componente gigante de la red de crecimiento es más pequeño} para un número pequeño de vecinos. 
+
+Por tanto, creo que las respuestas correctas son la \textbf{a} y la \textbf{c}.
+
+\begin{figure}[!h]
+\centering
+\mbox{
+    \subfigure[Ejecución de una red de \textit{Erdös-Renyi} con 100 nodos]{
+        \includegraphics[width=0.5\textwidth]{er100}
+        \label{er100}
+    }
+    \subfigure[Ejecución de una red de \textit{crecimiento} con 100 nodos]{
+        \includegraphics[width=0.5\textwidth]{gr100}
+        \label{gr100}
+    }
+}
+\caption{Comparación de una red \textit{Erös-Renyi} con una red de \textit{crecimiento}}
+\label{cmpgrer}
+\end{figure}}
 
 \end{document}
