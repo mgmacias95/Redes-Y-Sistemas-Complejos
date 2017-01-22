@@ -136,6 +136,7 @@
         \item Será la mitad de largo.
     \end{enumerate}
 }
+
 \sol{ En la \hyperref[er]{Figura \ref*{er}} vemos las ejecuciones de dos redes \textit{Erdös-Renyi}, una 100 veces mayor a la otra. El camino medio más corto de la red con tamaño 10 es de $2$ y, en la red con tamaño 1000 es de $6.2$. Como vemos, la el camino medio más corto se incrementa en $3$ en este caso, esto podría llevarnos a pensar que ninguna de las opciones que da el ejercicio es correcta, sin embargo, si activamos el flag \texttt{prob-or-num?} (\hyperref[eron]{Figura \ref*{eron}}) el camino medio más corto pasa a ser de $1.3$ en la de 10 nodos y $2.4$ en la de 1000. Por tanto, la respuesta correcta es la $c$. Esto se debe a que el camino medio más corto crece de forma logarítmica en una red de este tipo.
 
 \begin{figure}[!h]
@@ -176,16 +177,17 @@
 \exe{En comparación con el modelo ER, el modelo de introducción 
 \begin{enumerate}[\qquad a)]
     \item Tiene más enlaces.
-    \item Tienes más cliques.
+    \item Tienes más triángulos.
     \item Un camino mínimo medio más largo.
     \item Un grado más irregular.
     \item Una componente gigante más pequeña con valores bajos de $p$.
 \end{enumerate}
 }
+
 \sol{En la \hyperref[cmpintrer]{Figura \ref*{cmpintrer}} comparamos una red ER con una de Introducción, hechas con los mismos parámetros. Las soluciones correctas son:
 
 \begin{enumerate}[---]
-    \item La \textbf{b} porque se ve claramente que \textbf{la red de Introducción tiene más cliques} que la ER.
+    \item La \textbf{b} porque se ve claramente que \textbf{la red de Introducción tiene más triángulos} que la ER.
     \item La \textbf{d} porque en las gráficas de distribución de grados, se ve que \textbf{la red ER tiene una distribución de grados más regular} que la red de introducción.
     \item La \textbf{e} porque con $p = 0.03$, \textbf{la componente gigante obtenida en la red ER es 4 veces mayor}.
 \end{enumerate}
@@ -214,30 +216,71 @@
     \item Un camino mínimo medio más corto.
     \item Una distribución de grados más acotada.
     \item Una distribución de grados más amplia.
-    \item Una componente gigante más pequeña con menor número de vecinos.
-    \item Una componente gigante más grande con menor número de vecinos.
+    \item Una componente gigante más pequeña con un número pequeño de vecinos.
+    \item Una componente gigante más grande con un número pequeño de vecinos.
 \end{enumerate}
 }
-\sol{}
+
+\sol{ En la \hyperref[cmpgeoer]{Figura \ref*{cmpgeoer}} comparamos una red ER con una estática geográfica. Observando ambas imágenes, podemos descartar las dos primeras opciones ya que, aunque hay casos en los que tenemos un camino mínimo medio más largo y otros en los que tenemos un camino mínimo medio más corto, en este caso concreto ambos son iguales, lo que nos desmiente ambas opciones. En cuanto a la distribución de grados, \textbf{el modelo estático geográfico tiene una distribución de grados más acotada ya que no tiene ningún nodo con grado 0}. Por último, \textbf{la componente gigante es más pequeña con un número pequeño de vecinos}, en este caso, por ejemplo, la componente gigante de la red ER es el doble de grande.
+
+Por tanto, creo que las soluciones correctas son la \textbf{c} y la \textbf{e}. 
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[Ejecución de una red de \textit{Erdös-Renyi} con 100 nodos]{
+            \includegraphics[width=0.5\textwidth]{er100}
+            \label{er100}
+        }
+        \subfigure[Ejecución de una red \textit{estática geográfica} con 100 nodos]{
+            \includegraphics[width=0.5\textwidth]{geo100}
+            \label{geo100}
+        }
+    }
+    \caption{Comparación de una red \textit{Erös-Renyi} con una red \textit{estática geográfica}}
+    \label{cmpgeoer}
+\end{figure}
+}
 
 \section{Modelo de Encuentros Aleatorios}
 \textit{En relación con el modelo ER, el modelo de encuentros aleatorios tiene:
 \begin{enumerate}[a)]
     \item Un mayor número de triángulos.
     \item Un menor número de triángulos.
-    \item Una componente gigante menor con un menor número de vecinos.
-    \item Una componente gigante mayor con un menor número de vecinos.
+    \item Una componente gigante menor con un número pequeño de vecinos.
+    \item Una componente gigante mayor con un número pequeño de vecinos.
 \end{enumerate}
 }
-\sol{}
+\sol{En la \hyperref[cmprander]{Figura \ref*{cmprander}} vemos una comparación entre una red ER y una red de encuentros aleatorios. 
+
+En cuanto al número de triángulos, \textbf{la red de encuentros aleatorios tiene más triángulos}, tanto fuera como dentro de la componente gigante. Y en cuanto al tamaño de la componente gigante con un número pequeño de vecinos, \textbf{la red de encuentros aleatorios tiene una componente gigante menor}, en este caso, la componente gigante de la red ER es tres veces mayor.
+
+Por tanto, las opciones correctas son la \textbf{a} y la \textbf{c}.
+
+\begin{figure}[!h]
+    \centering
+    \mbox{
+        \subfigure[Ejecución de una red de \textit{Erdös-Renyi} con 100 nodos]{
+            \includegraphics[width=0.5\textwidth]{er100}
+            \label{er100}
+        }
+        \subfigure[Ejecución de una red de \textit{encuentros aleatorios} con 100 nodos]{
+            \includegraphics[width=0.5\textwidth]{rand100}
+            \label{rand100}
+        }
+    }
+    \caption{Comparación de una red \textit{Erös-Renyi} con una red de \textit{encuentros aleatorios}}
+    \label{cmprander}
+\end{figure}
+}
 
 \section{Modelo de crecimiento}
 \textit{En relación con el modelo ER, el modelo de crecimiento tiene:
 \begin{enumerate}[a)]
     \item Más hubs.
     \item Menos hubs.
-    \item Una componente gigante menor con un menor número de vecinos.
-    \item Una componente gigante mayor con un menor número de vecinos.
+    \item Una componente gigante menor con un número pequeño de vecinos.
+    \item Una componente gigante mayor con un número pequeño de vecinos.
 \end{enumerate}
 }
 \sol{}
